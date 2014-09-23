@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="Navigation.Views.DetailPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Navigation.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ScrollViewer 
+                IsScrollInertiaEnabled="True"
+                IsDeferredScrollingEnabled="True"
+                IsVerticalScrollChainingEnabled="True"
+                IsVerticalRailEnabled="True"
+                VerticalScrollMode="Enabled" 
+                HorizontalScrollMode="Enabled"
+                VerticalScrollBarVisibility="Hidden"
+                ZoomMode="Enabled" AllowDrop="True">
+            <StackPanel>
+                <TextBlock x:Name="Title" TextWrapping="WrapWholeWords" Style="{StaticResource TitleTextBlockStyle}" />
+
+                <TextBlock x:Name="Feed" TextWrapping="WrapWholeWords" FontSize="14"></TextBlock>
+
+
+                <TextBlock x:Name="PubDate" Style="{StaticResource SubheaderTextBlockStyle}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Roots >
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="Feed" />
+    <RootPropertyPathName Name="Director" />
+    <RootPropertyPathName Name="Link" />
+    <RootPropertyPathName Name="Title" />
+  </Roots.PropertyPathNames>
+  <Roots.RootTypes>
+    <RootType FullName="Caliburn.Micro.CaliburnApplication" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Page">
+      <RootProperty Name="Background" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="Children" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="IsScrollInertiaEnabled" />
+      <RootProperty Name="IsDeferredScrollingEnabled" />
+      <RootProperty Name="IsVerticalScrollChainingEnabled" />
+      <RootProperty Name="IsVerticalRailEnabled" />
+      <RootProperty Name="VerticalScrollMode" />
+      <RootProperty Name="HorizontalScrollMode" />
+      <RootProperty Name="VerticalScrollBarVisibility" />
+      <RootProperty Name="ZoomMode" />
+      <RootProperty Name="AllowDrop" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Children" />
+      <RootProperty Name="Orientation" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Text" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Navigation.Views.DetailPageView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="IsItemClickEnabled" />
+      <RootProperty Name="SelectionMode" />
+      <RootProperty Name="ItemTemplate" />
+    </RootType>
+    <RootType FullName="Caliburn.Micro.Message">
+      <RootMethod Name="GetAttach" />
+      <RootMethod Name="SetAttach" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding" />
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Navigation.Views.MainPageView" />
+  </Roots.RootTypes>
+</Roots>

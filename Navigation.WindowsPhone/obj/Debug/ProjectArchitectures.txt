@@ -1,0 +1,1 @@
+C:\Users\Alex\Dropbox\RssReader\Navigation.WindowsPhone\RssReader.csproj;neutral
