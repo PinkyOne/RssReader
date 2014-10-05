@@ -9,16 +9,11 @@
 
 namespace Navigation.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Text;
 
     using Caliburn.Micro;
 
     using RssReader.Storage;
-
-    using Windows.UI.Popups;
 
     /// <summary>
     /// The main page view model.
@@ -47,7 +42,7 @@ namespace Navigation.ViewModels
         }
         
         /// <summary>
-        /// Gets or sets the feed.
+        /// Gets the feed.
         /// </summary>
         public ObservableCollection<RssItem> Feed
         {
@@ -56,7 +51,7 @@ namespace Navigation.ViewModels
                 return this.feed;
             }
 
-            set
+            private set
             {
                 this.feed = value;
                 this.NotifyOfPropertyChange(() => this.Feed);
@@ -79,7 +74,10 @@ namespace Navigation.ViewModels
         /// </summary>
         protected override void OnActivate()
         {
-            this.Feed = new RssFeed("asd").Items;
+            if (this.Feed == null)
+            {
+                this.Feed = new RssFeed("asd").Items;
+            }
         }
     }
 }

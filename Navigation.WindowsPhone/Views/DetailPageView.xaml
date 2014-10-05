@@ -6,9 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#FFE8BEE8">
 
     <Grid>
+        
         <ScrollViewer 
                 IsScrollInertiaEnabled="True"
                 IsDeferredScrollingEnabled="True"
@@ -19,13 +20,10 @@
                 VerticalScrollBarVisibility="Hidden"
                 ZoomMode="Enabled" AllowDrop="True">
             <StackPanel>
-                <TextBlock x:Name="Title" TextWrapping="WrapWholeWords" Style="{StaticResource TitleTextBlockStyle}" />
-
-                <TextBlock x:Name="Feed" TextWrapping="WrapWholeWords" FontSize="14"></TextBlock>
-
-
-                <TextBlock x:Name="PubDate" Style="{StaticResource SubheaderTextBlockStyle}" />
-            </StackPanel>
+                <TextBlock x:Name="PubDate" Margin="30,0,30,10" FontSize="10" Foreground="DarkGray" Style="{StaticResource SubheaderTextBlockStyle}" FontFamily="Snap ITC" SelectionHighlightColor="{x:Null}" />
+                <TextBlock x:Name="Title" Margin="10,10,10,0" FontSize="20" Foreground="Black" TextWrapping="WrapWholeWords" Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock x:Name="Feed" Margin="5,20,0,0" Foreground="Black" TextWrapping="WrapWholeWords" FontSize="14"></TextBlock>
+                </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

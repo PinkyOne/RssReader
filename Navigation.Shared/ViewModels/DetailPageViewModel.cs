@@ -39,24 +39,24 @@ namespace Navigation.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the title.
+        /// Gets the title.
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get; private set; }
 
         /// <summary>
-        /// Gets or sets public date
+        /// Gets public date
         /// </summary>
-        public string PubDate { get; set; }
+        public string PubDate { get; private set; }
 
         /// <summary>
-        /// Gets or sets the feed.
+        /// Gets the feed.
         /// </summary>
-        public string Feed { get; set; }
+        public string Feed { get; private set; }
 
         /// <summary>
-        /// Gets or sets the item.
+        /// Gets the item.
         /// </summary>
-        public RssItem Parameter { get; set; }
+        public RssItem Parameter { get; private set; }
 
         /// <summary>
         /// The on activate.
@@ -69,17 +69,6 @@ namespace Navigation.ViewModels
             this.NotifyOfPropertyChange(() => this.Title);
             this.NotifyOfPropertyChange(() => this.Feed);
             this.NotifyOfPropertyChange(() => this.PubDate);
-        }
-
-        /// <summary>
-        /// The on deactivate.
-        /// </summary>
-        /// <param name="close">
-        /// The close.
-        /// </param>
-        protected override void OnDeactivate(bool close)
-        {
-            base.OnDeactivate(close);
         }
     }
 }

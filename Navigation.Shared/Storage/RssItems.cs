@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace RssReader.Storage
 {
-    using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
 
@@ -18,8 +16,6 @@ namespace RssReader.Storage
     /// </summary>
     public class RssItems : ObservableCollection<RssItem>
     {
-        // бесполезный класс(почти)
-
         /// <summary>
         /// The get item.
         /// </summary>

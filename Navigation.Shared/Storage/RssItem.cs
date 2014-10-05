@@ -28,9 +28,9 @@ namespace RssReader.Storage
         {
             foreach (var xmlElement in rssItems.Elements())
             {
+                // Parsing feed
                 switch (xmlElement.Name.LocalName)
                 {
-                        // парсим новость
                     case "title":
                     {
                         this.Title = xmlElement.Value;
