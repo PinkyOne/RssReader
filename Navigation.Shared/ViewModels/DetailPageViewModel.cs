@@ -19,7 +19,7 @@ namespace Navigation.ViewModels
     public class DetailPageViewModel : Screen
     {
         /// <summary>
-        /// The navigation service.
+        /// The navigation service of application.
         /// </summary>
         private INavigationService navigationService;
 
@@ -27,10 +27,10 @@ namespace Navigation.ViewModels
         /// Initializes a new instance of the <see cref="DetailPageViewModel"/> class.
         /// </summary>
         /// <param name="navigationService">
-        /// The navigation Service.
+        /// The navigation service of application.
         /// </param>
         /// <param name="item">
-        /// The item.
+        /// The viewed item.
         /// </param>
         public DetailPageViewModel(INavigationService navigationService, RssItem item)
         {
@@ -38,29 +38,14 @@ namespace Navigation.ViewModels
             this.Parameter = item;
         }
 
-        /// <summary>
-        /// Gets the title.
-        /// </summary>
         public string Title { get; private set; }
 
-        /// <summary>
-        /// Gets public date
-        /// </summary>
         public string PubDate { get; private set; }
 
-        /// <summary>
-        /// Gets the feed.
-        /// </summary>
         public string Feed { get; private set; }
 
-        /// <summary>
-        /// Gets the item.
-        /// </summary>
         public RssItem Parameter { get; private set; }
 
-        /// <summary>
-        /// The on activate.
-        /// </summary>
         protected override void OnActivate()
         {
             this.Title = this.Parameter.Title;
