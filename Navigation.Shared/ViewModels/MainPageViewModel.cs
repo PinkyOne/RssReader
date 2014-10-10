@@ -17,6 +17,12 @@ namespace Navigation.ViewModels
 
     public class MainPageViewModel : Screen
     {
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// The navigation service of application.
+        /// </summary>
+>>>>>>> origin/master
         private readonly INavigationService navigationService;
 
         private ObservableCollection<RssItem> feed;
@@ -25,7 +31,11 @@ namespace Navigation.ViewModels
         {
             this.navigationService = navigationService;
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> origin/master
         public ObservableCollection<RssItem> Feed
         {
             get
@@ -40,6 +50,15 @@ namespace Navigation.ViewModels
             }
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// Goes to detail page on rss item.
+        /// </summary>
+        /// <param name="item">
+        /// The item.
+        /// </param>
+>>>>>>> origin/master
         public void GoToDetail(RssItem item)
         {
             this.navigationService.NavigateToViewModel<DetailPageViewModel>(item);

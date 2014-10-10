@@ -72,7 +72,7 @@ namespace RssReader.Storage
                             "datskdfghdksjfghlskdfglsdfhglskdhfglksdjhfglskdfhvsdkhfglsdfhglksdhfgksdhjf gdsl fhgd fgkdjs hfglsd hgsldj hgsld ghsdl hgsdl ghsdl gkhs3a45"),
                         new XElement(
                             "description",
-                            "d4agffdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsszxcczczvczvfdzvfdzbfngfxmdrsntewdfguhjkhjgffdzsdfghjkmljhgfdresrdtfyguhikjlknbhvgfyghjbnhvgfygujbhvgcfdtfggcfxdsrdtfgfdsedrfgvhbjjkuhjk;.lkm,lkojikjhgyvhbgftdfcgvhbgyftdfghjgyftgvhbjgyftfgvhbjnkjhughyvhbjnjhgyvhbjhgvh52"),
+                            "d4agffdfffffffffffffffffffffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffffffffffffffddddddddddddd ddddddddddddddddddddddddddddddddddddddddddddddddddddddd dddddddddddddddddddddddddddddddddddddddddddddddddddd ddddddddddddddddddddddddddddsszxcczczvczvfdzvfdzbfngfxm drsntewdfguhjkhjgffdzsdfghjkmljhgfdresrdtfyguhikj lknbhvgfyghjbnhvgfygujbhvgcfdtfggcfxdsrdtfgfdsedrfgvhbj jkuhjk;.lkm,lkojikjhgyvhbgftdfcgvhbgyftdfghjgyft gvhbjgyftfgvhbjnkjhughyvhbjnjhgyvhbj hgvh52"),
                         new XElement("pubDate", "12.43.1234")),
                     new XElement(
                         "item",
@@ -178,7 +178,6 @@ namespace RssReader.Storage
 
                             case "item":
                                 {
-                                    // создаем новость
                                     var channelItem = new RssItem(channelNode);
                                     this.Items.Add(channelItem);
                                 }
@@ -207,24 +206,12 @@ namespace RssReader.Storage
             }
         }
 
-        /// <summary>
-        /// Gets the items.
-        /// </summary>
         public RssItems Items { get; private set; }
 
-        /// <summary>
-        /// Gets the title.
-        /// </summary>
         public string Title { get; private set; }
 
-        /// <summary>
-        /// Gets the link.
-        /// </summary>
         public string Link { get; private set; }
 
-        /// <summary>
-        /// Gets the description.
-        /// </summary>
         public string Description { get; private set; }
     }
 }
