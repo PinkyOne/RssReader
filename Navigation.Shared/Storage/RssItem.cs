@@ -59,19 +59,40 @@ namespace RssReader.Storage
             }
         }
 
+        /// <summary>
+        /// Gets the item.
+        /// </summary>
         public string Item
         {
             get { return this.ToString(); }
         }
         
+        /// <summary>
+        /// Gets the title.
+        /// </summary>
         public string Title { get; private set; }
 
+        /// <summary>
+        /// Gets the link.
+        /// </summary>
         public string Link { get; private set; }
 
+        /// <summary>
+        /// Gets the description.
+        /// </summary>
         public string Description { get; private set; }
 
+        /// <summary>
+        /// Gets the public date.
+        /// </summary>
         public string PublicDate { get; private set; }
 
+        /// <summary>
+        /// The to string.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public override string ToString()
         {
             return this.Title + Environment.NewLine + this.Description + Environment.NewLine + this.PublicDate;

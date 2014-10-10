@@ -10,7 +10,7 @@
     Background="#FFE8BEE8">
 
     <Grid>
-        <TextBlock FontSize="30" Margin="40,10,30,565" FontFamily="Segoe Print">RssReader by Pinky</TextBlock>
+        <TextBlock FontSize="30" Margin="40,10,30,590" FontFamily="Freestyle Script">RssReader by Pinky</TextBlock>
         <ScrollViewer Margin="0,60,0,0" VerticalScrollBarVisibility="Visible"
             IsVerticalRailEnabled="True"
                       Name="ScrollViewer"
@@ -19,7 +19,7 @@
                       ItemsSource="{Binding Feed}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
-                      micro:Message.Attach="[Event ItemClick] = [Action GoToDetail($clickeditem)]" ShowsScrollingPlaceholders="True" ReorderMode="Disabled" IsSynchronizedWithCurrentItem="False" SelectedIndex="-1" IsActiveView="False" ItemClick="ItemClicked" Loaded="OnLoaded" Height="576">
+                      micro:Message.Attach="[Event ItemClick] = [Action GoToDetail($clickeditem)]" ShowsScrollingPlaceholders="True" ReorderMode="Disabled" IsSynchronizedWithCurrentItem="False" SelectedIndex="-1" IsActiveView="False" ItemClick="ItemClicked" Loaded="OnLoaded">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
