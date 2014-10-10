@@ -7,23 +7,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:micro="using:Caliburn.Micro"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#FFE8BEE8">
 
     <Grid>
-        <ListView ItemsSource="{Binding Feed}"
+        <TextBlock FontSize="30" Margin="40,10,30,590" FontFamily="Freestyle Script">RssReader by Pinky</TextBlock>
+        <ScrollViewer Margin="0,60,0,0" VerticalScrollBarVisibility="Visible"
+            IsVerticalRailEnabled="True"
+                      Name="ScrollViewer"
+            BringIntoViewOnFocusChange="True" Background="Transparent">
+            <ListView x:ConnectionId='1'  Name="ListView"
+                      ItemsSource="{Binding Feed}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
-                      micro:Message.Attach="[Event ItemClick] = [Action GoToDetail($clickeditem)]">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Title}" Style="{StaticResource BodyTextBlockStyle}" />
-                        <TextBlock Text="{Binding Link}" Style="{StaticResource BodyTextBlockStyle}" />
-                        <TextBlock Text="{Binding Director}" Style="{StaticResource BodyTextBlockStyle}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                      micro:Message.Attach="[Event ItemClick] = [Action GoToDetail($clickeditem)]" ShowsScrollingPlaceholders="True" ReorderMode="Disabled" IsSynchronizedWithCurrentItem="False" SelectedIndex="-1" IsActiveView="False"                                          >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Title}" Margin="20,5,0,10" Foreground="Black" Style="{StaticResource BodyTextBlockStyle}" />
+                            <TextBlock Text="{Binding Link}" Margin="5,0,5,0" Foreground="Aquamarine" Style="{StaticResource BodyTextBlockStyle}" />
+                            <TextBlock Text="{Binding PublicDate}" FontSize="14" Margin="30,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </Page>
 

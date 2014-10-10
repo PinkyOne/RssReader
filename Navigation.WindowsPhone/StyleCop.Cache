@@ -189,11 +189,14 @@
   <project key="239623582">
     <configuration>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</configuration>
   </project>
+  <project key="-725952792">
+    <configuration>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</configuration>
+  </project>
   <sourcecode name="RssFeed.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.23 00:26:03.940</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.05 20:49:48.454</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -215,8 +218,8 @@
   <sourcecode name="RssItem.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.18 19:44:09.000</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.05 20:49:48.454</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -238,8 +241,8 @@
   <sourcecode name="RssItems.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.19 17:35:24.000</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.05 20:49:48.454</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -261,8 +264,8 @@
   <sourcecode name="DetailPageViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.23 00:26:21.710</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.10 15:28:49.780</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -284,8 +287,8 @@
   <sourcecode name="MainPageViewModel.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.23 00:32:37.754</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.05 20:49:48.455</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -307,8 +310,8 @@
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.23 16:16:09.748</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.05 20:49:48.543</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -330,8 +333,8 @@
   <sourcecode name="App.xaml.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.23 00:38:52.364</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.05 20:49:48.451</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -353,8 +356,8 @@
   <sourcecode name="DetailPageView.xaml.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.23 00:39:34.263</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.05 20:49:48.545</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -376,8 +379,8 @@
   <sourcecode name="MainPageView.xaml.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
-      <settingsFile>2014.09.10 17:30:35.000</settingsFile>
-      <sourceFile>2014.09.23 00:40:01.139</sourceFile>
+      <settingsFile>2014.10.10 15:05:03.750</settingsFile>
+      <sourceFile>2014.10.05 20:49:48.545</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
