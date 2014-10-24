@@ -50,12 +50,11 @@ namespace RssReader.ViewModels
 
         protected override async void OnInitialize()
         {
-            var client = new HttpClient();
-            var s = await RssDownloader.Download("http://news.yandex.ua/movies.rss");
+            string s = await RssDownloader.Download();
             if (this.Feed == null)
             {
-                var asd = new RssXmlParser(RssDownloader.CreateDoc(s)).Items;
-                this.Feed = new RssXmlParser(RssDownloader.CreateDoc(s)).Items;
+                var items = RssXmlParser.ParseXml(RssDownloader.CreateDoc(s));
+                this.Feed = items.Items;
             }
         }
     }

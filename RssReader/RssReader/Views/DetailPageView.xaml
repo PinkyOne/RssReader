@@ -23,7 +23,7 @@
                 <TextBlock x:Name="PubDate" Margin="30,0,30,10" FontSize="10" Foreground="DarkGray" Style="{StaticResource SubheaderTextBlockStyle}" FontFamily="Snap ITC" SelectionHighlightColor="{x:Null}" />
                 <TextBlock x:Name="Title" Margin="10,10,10,0" FontSize="20" Foreground="Black" TextWrapping="WrapWholeWords" Style="{StaticResource TitleTextBlockStyle}" />
                 <TextBlock x:Name="Feed" Margin="5,20,0,0" Foreground="Black" TextWrapping="WrapWholeWords" FontSize="14"></TextBlock>
-                </StackPanel>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

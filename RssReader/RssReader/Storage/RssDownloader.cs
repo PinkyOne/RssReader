@@ -13,7 +13,9 @@ namespace RssReader.Storage
 
     public class RssDownloader
     {
-        public static async Task<string> Download(string url)
+        const string url = "http://news.yandex.ua/movies.rss";
+
+        public static async Task<string> Download()
         {
             var client = new HttpClient();
             return await client.GetStringAsync(url);

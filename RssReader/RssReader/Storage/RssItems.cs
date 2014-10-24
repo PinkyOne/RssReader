@@ -13,9 +13,24 @@ namespace RssReader.Storage
 
     public class RssItems : ObservableCollection<RssItem>
     {
+        public RssItems(string title, string link, string description, ObservableCollection<RssItem> items)
+        {
+            this.Title=title;
+            this.Link = link;
+            this.Description = description;
+            this.Items = items;
+        }
         public RssItem GetItem(string title)
         {
             return this.FirstOrDefault(itemForCheck => itemForCheck != null && itemForCheck.Title == title);
         }
+
+        public ObservableCollection<RssItem> Items { get; private set; }
+
+        public string Title { get; private set; }
+
+        public string Link { get; private set; }
+
+        public string Description { get; private set; }
     }
 }

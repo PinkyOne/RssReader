@@ -18,9 +18,5 @@ namespace RssReader.Views
         {
             this.InitializeComponent();
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-        }
     }
 }

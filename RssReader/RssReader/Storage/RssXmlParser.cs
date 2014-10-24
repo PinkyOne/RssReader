@@ -9,74 +9,42 @@
 namespace RssReader.Storage
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Xml.Linq;
     
     public class RssXmlParser
     {
-        public RssXmlParser(XDocument xmlDoc)
+        public static RssItems ParseXml(XDocument xmlDoc)
         {
-            this.Items = new RssItems();
             try
             {
                 var channelXmlNode = xmlDoc.Element("rss").Element("channel"); // Parsing xml
 
                 if (channelXmlNode != null)
                 {
-                    this.Title =
+                    var title =
                         (from channelNode in channelXmlNode.Elements()
                          where channelNode.Name.LocalName == "title"
                          select channelNode).First().Value;
-                    this.Description =
+                    var description =
                         (from channelNode in channelXmlNode.Elements()
                          where channelNode.Name.LocalName == "description"
                          select channelNode).First().Value;
-                    this.Link =
+                    var link =
                         (from channelNode in channelXmlNode.Elements()
                          where channelNode.Name.LocalName == "link"
                          select channelNode).First().Value;
-                    var items =
+                    var nodes =
                         from channelNode in channelXmlNode.Elements()
                          where channelNode.Name.LocalName == "item"
                          select channelNode;
-                    foreach (var channelNode in items)
-                    {
-                        this.Items.Add(new RssItem(channelNode));
-                    }
-                    /*foreach (var channelNode in channelXmlNode.Elements())
-                    {
-                        switch (channelNode.Name.LocalName)
-                        {
-                            case "title":
-                                {
-                                    this.Title = channelNode.Value;
-                                }
 
-                                break;
+                    var items = new ObservableCollection<RssItem>(from node in nodes
+                                                                  let item = new RssItem(node)
+                                                                  select item);
 
-                            case "description":
-                                {
-                                    this.Description = channelNode.Value;
-                                }
-
-                                break;
-
-                            case "link":
-                                {
-                                    this.Link = channelNode.Value;
-                                }
-
-                                break;
-
-                            case "item":
-                                {
-                                    var channelItem = new RssItem(channelNode);
-                                    this.Items.Add(channelItem);
-                                }
-
-                                break;
-                        }
-                    }*/
+                    return new RssItems(title, link, description,items);
                 }
                 else
                 {
@@ -88,13 +56,5 @@ namespace RssReader.Storage
                 throw new Exception("Файл не найден!");
             }
         }
-
-        public RssItems Items { get; private set; }
-
-        public string Title { get; private set; }
-
-        public string Link { get; private set; }
-
-        public string Description { get; private set; }
     }
 }
