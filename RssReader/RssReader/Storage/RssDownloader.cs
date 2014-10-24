@@ -16,7 +16,6 @@ namespace RssReader.Storage
         public static async Task<string> Download(string url)
         {
             var client = new HttpClient();
-            string s = await client.GetStringAsync(url);
             return await client.GetStringAsync(url);
         }
 

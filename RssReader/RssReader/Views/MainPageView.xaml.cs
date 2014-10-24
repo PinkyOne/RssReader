@@ -28,7 +28,7 @@ namespace RssReader.Views
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            this.ScrollViewer.ScrollToVerticalOffset(verticalOffset);
+            this.ScrollViewer.ChangeView(this.ScrollViewer.HorizontalOffset, verticalOffset, this.ScrollViewer.ZoomFactor);
         }
     }
 }

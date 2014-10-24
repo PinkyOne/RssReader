@@ -18,8 +18,6 @@ namespace RssReader.ViewModels
 
     using RssReader.Storage;
 
-    using RssReader.Storage;
-
     public class MainPageViewModel : Screen
     {
         private static ObservableCollection<RssItem> feed;

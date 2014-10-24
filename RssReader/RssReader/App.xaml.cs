@@ -62,15 +62,9 @@ namespace RssReader
             this.container.BuildUp(instance);
         }
 
-        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             DisplayRootView<MainPageView>();
-            this.GetFeed("http://news.yandex.ru/hardware.rss");
-        }
-
-        private async void GetFeed(string url)
-        {
-            await RssDownloader.Download(url);
         }
     }
 }
