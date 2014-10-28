@@ -11,17 +11,17 @@ namespace RssReader.Storage
 
     using Windows.Networking.BackgroundTransfer;
 
-    public class RssDownloader
+    public class RssDownloader : IDownloader
     {
-        const string url = "http://news.yandex.ua/movies.rss";
+        private const string Url = "http://news.yandex.ua/movies.rss";
 
-        public static async Task<string> Download()
+        public async Task<string> Download()
         {
             var client = new HttpClient();
-            return await client.GetStringAsync(url);
+            return await client.GetStringAsync(Url);
         }
 
-        public static XDocument CreateDoc(string feed)
+        public XDocument CreateDoc(string feed)
         {
             return XDocument.Parse(feed);
         }

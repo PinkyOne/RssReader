@@ -87,6 +87,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\IDownloader.cs" />
     <Compile Include="Storage\RssDownloader.cs" />
     <Compile Include="Storage\RssXmlParser.cs" />
     <Compile Include="Storage\RssItem.cs" />

@@ -1,1 +1,1 @@
-C:\Users\student\Documents\GitHub\RssReader\RssReader\RssReader\RssReader.csproj;neutral
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\RssReader.csproj;neutral

@@ -36,6 +36,8 @@ namespace RssReader
 
             this.container.RegisterWinRTServices();
 
+            this.container.Singleton<IDownloader, RssDownloader>();
+
             MessageBinder.SpecialValues.Add("$clickeditem", c => ((ItemClickEventArgs)c.EventArgs).ClickedItem);
 
             this.container.PerRequest<MainPageViewModel>();

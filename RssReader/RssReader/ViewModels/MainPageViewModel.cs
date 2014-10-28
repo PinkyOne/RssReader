@@ -6,7 +6,6 @@
 //   The main page view model.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RssReader.ViewModels
 {
     using System.Collections.ObjectModel;
@@ -24,21 +23,24 @@ namespace RssReader.ViewModels
 
         private readonly INavigationService navigationService;
 
-        public MainPageViewModel(INavigationService navigationService)
+        private readonly WinRTContainer container;
+
+        public MainPageViewModel(WinRTContainer container, INavigationService navigationService)
         {
             this.navigationService = navigationService;
+            this.container = container;
         }
 
         public ObservableCollection<RssItem> Feed
         {
             get
             {
-                return MainPageViewModel.feed;
+                return feed;
             }
 
             private set
             {
-                MainPageViewModel.feed = value;
+                feed = value;
                 this.NotifyOfPropertyChange(() => this.Feed);
             }
         }
@@ -50,10 +52,12 @@ namespace RssReader.ViewModels
 
         protected override async void OnInitialize()
         {
-            string s = await RssDownloader.Download();
+            var loader = container.GetInstance<IDownloader>();
+            
+            string s = await loader.Download();
             if (this.Feed == null)
             {
-                var items = RssXmlParser.ParseXml(RssDownloader.CreateDoc(s));
+                var items = RssXmlParser.ParseXml(loader.CreateDoc(s));
                 this.Feed = items.Items;
             }
         }

@@ -44,12 +44,9 @@ namespace RssReader.Storage
                                                                   let item = new RssItem(node)
                                                                   select item);
 
-                    return new RssItems(title, link, description,items);
+                    return new RssItems(title, link, description, items);
                 }
-                else
-                {
-                    throw new Exception("Ошибка в XML. Описание канала не найдено!");
-                }
+                throw new Exception("Ошибка в XML. Описание канала не найдено!");
             }
             catch (System.IO.FileNotFoundException)
             {
