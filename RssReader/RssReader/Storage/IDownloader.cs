@@ -10,7 +10,7 @@ namespace RssReader.Storage
 
     internal interface IDownloader
     {
-        Task<string> Download();
+        Task<string> AsyncDownload();
 
         XDocument CreateDoc(string feed);
     }

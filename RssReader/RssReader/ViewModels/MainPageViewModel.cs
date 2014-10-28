@@ -54,7 +54,7 @@ namespace RssReader.ViewModels
         {
             var loader = container.GetInstance<IDownloader>();
             
-            string s = await loader.Download();
+            string s = await loader.AsyncDownload();
             if (this.Feed == null)
             {
                 var items = RssXmlParser.ParseXml(loader.CreateDoc(s));

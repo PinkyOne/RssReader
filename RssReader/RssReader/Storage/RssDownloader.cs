@@ -15,10 +15,12 @@ namespace RssReader.Storage
     {
         private const string Url = "http://news.yandex.ua/movies.rss";
 
-        public async Task<string> Download()
+        public async Task<string> AsyncDownload()
         {
             var client = new HttpClient();
-            return await client.GetStringAsync(Url);
+            Task<string> stringAsync = client.GetStringAsync(Url);
+            stringAsync.ConfigureAwait(false);
+            return await stringAsync;
         }
 
         public XDocument CreateDoc(string feed)
