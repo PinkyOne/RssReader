@@ -25,10 +25,20 @@ namespace RssReader.ViewModels
 
         private readonly WinRTContainer container;
 
-        public MainPageViewModel(WinRTContainer container, INavigationService navigationService)
+        private readonly IDownloader downloader;
+
+        private readonly IParser parser;
+
+        public MainPageViewModel(
+            WinRTContainer container,
+            INavigationService navigationService,
+            IDownloader downloader,
+            IParser parser)
         {
             this.navigationService = navigationService;
             this.container = container;
+            this.downloader = downloader;
+            this.parser = parser;
         }
 
         public ObservableCollection<RssItem> Feed
@@ -52,13 +62,10 @@ namespace RssReader.ViewModels
 
         protected override async void OnInitialize()
         {
-            var loader = container.GetInstance<IDownloader>();
-            
-            string s = await loader.AsyncDownload();
+            string s = await downloader.DownloadAsync();
             if (this.Feed == null)
             {
-                var items = RssXmlParser.ParseXml(loader.CreateDoc(s));
-                this.Feed = items.Items;
+                this.Feed = parser.ParseXml(parser.CreateDoc(s)).Items;
             }
         }
     }

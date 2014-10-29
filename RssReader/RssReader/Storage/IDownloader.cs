@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RssReader.Storage
+﻿namespace RssReader.Storage
 {
+    using System.Threading.Tasks;
     using System.Xml.Linq;
 
-    internal interface IDownloader
+    public interface IDownloader
     {
-        Task<string> AsyncDownload();
-
-        XDocument CreateDoc(string feed);
+        Task<string> DownloadAsync();
     }
 }

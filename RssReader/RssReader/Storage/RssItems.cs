@@ -21,7 +21,7 @@ namespace RssReader.Storage
             this.Items = items;
         }
         
-        public ObservableCollection<RssItem> Items { get; private set; }
+        public new ObservableCollection<RssItem> Items { get; private set; }
 
         public string Title { get; private set; }
 
