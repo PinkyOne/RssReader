@@ -6,5 +6,7 @@ Assets\StoreLogo.scale-240.png
 Assets\WideLogo.scale-240.png
 App.xbf
 RssReader.xr.xml
+Views\AddPageView.xbf
 Views\DetailPageView.xbf
+Views\ItemPageView.xbf
 Views\MainPageView.xbf

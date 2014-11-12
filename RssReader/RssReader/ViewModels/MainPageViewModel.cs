@@ -1,17 +1,12 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MainPageViewModel.cs" company="mercdev">
-//   Saved
-// </copyright>
-// <summary>
-//   The main page view model.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace RssReader.ViewModels
 {
     using System.Collections.ObjectModel;
-    using System.Net;
-    using System.Net.Http;
-    using System.Runtime.InteropServices;
 
     using Caliburn.Micro;
 
@@ -19,8 +14,6 @@ namespace RssReader.ViewModels
 
     public class MainPageViewModel : Screen
     {
-        private static ObservableCollection<RssItem> feed;
-
         private readonly INavigationService navigationService;
 
         private readonly WinRTContainer container;
@@ -40,32 +33,39 @@ namespace RssReader.ViewModels
             this.downloader = downloader;
             this.parser = parser;
         }
+        
+        public ObservableCollection<RssFeed> News { get; private set; }
 
-        public ObservableCollection<RssItem> Feed
+        public void GoToDetail(RssFeed feed)
         {
-            get
-            {
-                return feed;
-            }
-
-            private set
-            {
-                feed = value;
-                this.NotifyOfPropertyChange(() => this.Feed);
-            }
+            this.navigationService.NavigateToViewModel<ItemPageViewModel>(feed);
         }
 
-        public void GoToDetail(RssItem item)
+        public void DeleteItem(RssFeed feed)
         {
-            this.navigationService.NavigateToViewModel<DetailPageViewModel>(item);
+            this.News.Remove(feed);
         }
 
-        protected override async void OnInitialize()
+        public void AddNewsLine()
         {
-            string s = await downloader.DownloadAsync();
-            if (this.Feed == null)
+            navigationService.NavigateToViewModel<AddPageViewModel>();
+        }
+
+        public async void Refresh()
+        {
+        }
+
+        protected override void OnInitialize()
+        {
+            if (this.News == null)
             {
-                this.Feed = parser.ParseXml(parser.CreateDoc(s)).Items;
+                string[] news =
+                    downloader.DownloadAsync(
+                        new[] { "http://news.yandex.ru/computers.rss", "http://news.yandex.ru/auto.rss" });
+
+                this.News =
+                    new ObservableCollection<RssFeed>(
+                        (from stringFeed in news let feed = parser.ParseXml(stringFeed) select feed).ToArray());
             }
         }
     }

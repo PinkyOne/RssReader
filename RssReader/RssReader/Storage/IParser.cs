@@ -4,8 +4,6 @@
 
     public interface IParser
     {
-        RssItems ParseXml(XDocument xmlDoc);
-
-        XDocument CreateDoc(string feed);
+        RssFeed ParseXml(string feed);
     }
 }

@@ -67,8 +67,14 @@
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\AddPageView.xbf">
+      <PackagePath>Views\AddPageView.xbf</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\DetailPageView.xbf">
       <PackagePath>Views\DetailPageView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\ItemPageView.xbf">
+      <PackagePath>Views\ItemPageView.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\MainPageView.xbf">
       <PackagePath>Views\MainPageView.xbf</PackagePath>

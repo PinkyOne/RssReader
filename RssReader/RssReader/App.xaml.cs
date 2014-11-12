@@ -12,6 +12,8 @@ namespace RssReader
     using System;
     using System.Collections.Generic;
 
+    using Windows.UI.Xaml.Input;
+
     using Caliburn.Micro;
 
     using RssReader.Storage;
@@ -38,11 +40,17 @@ namespace RssReader
 
             this.container.Singleton<IDownloader, RssDownloader>();
             this.container.Singleton<IParser, RssXmlParser>();
+            this.container.Singleton<INewsHolder, RssHolder>();
 
             MessageBinder.SpecialValues.Add("$clickeditem", c => ((ItemClickEventArgs)c.EventArgs).ClickedItem);
+            MessageBinder.SpecialValues.Add(
+                "$longtappeditem",
+                c => ((TextBlock)((RightTappedRoutedEventArgs)c.EventArgs).OriginalSource).DataContext);
 
-            this.container.PerRequest<MainPageViewModel>();
+            this.container.PerRequest<ItemPageViewModel>();
             this.container.PerRequest<DetailPageViewModel>();
+            this.container.PerRequest<MainPageViewModel>();
+            this.container.PerRequest<AddPageViewModel>();
         }
 
         protected override void PrepareViewFirst(Frame rootFrame)

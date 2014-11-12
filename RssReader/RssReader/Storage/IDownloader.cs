@@ -5,6 +5,8 @@
 
     public interface IDownloader
     {
-        Task<string> DownloadAsync();
+        Task<string> DownloadAsync(string url);
+
+        string[] DownloadAsync(string[] urls);
     }
 }

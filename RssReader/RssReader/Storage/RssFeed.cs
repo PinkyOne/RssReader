@@ -11,9 +11,11 @@ namespace RssReader.Storage
     using System.Collections.ObjectModel;
     using System.Linq;
 
-    public class RssItems : ObservableCollection<RssItem>
+    using Microsoft.Xaml.Interactivity;
+
+    public class RssFeed : ObservableCollection<RssItem>
     {
-        public RssItems(string title, string link, string description, ObservableCollection<RssItem> items)
+        public RssFeed(string title, string link, string description, ObservableCollection<RssItem> items)
         {
             this.Title = title;
             this.Link = link;
