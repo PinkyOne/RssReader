@@ -16,18 +16,15 @@ namespace RssReader.ViewModels
 
         private readonly INewsHolder holder;
 
-        private readonly IDownloader loader;
-
-        public AddPageViewModel(INavigationService navigationService,IDownloader loader, INewsHolder holder)
+        public AddPageViewModel(INavigationService navigationService, INewsHolder holder)
         {
-            this.loader = loader;
             this.holder = holder;
             this.navigationService = navigationService;
         }
 
         public void AddNewsLine(string url)
         {
-            holder.AddLine(loader, url);
+            holder.AddLine(url);
             navigationService.NavigateToViewModel<MainPageViewModel>();
         }
     }

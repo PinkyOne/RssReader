@@ -16,24 +16,24 @@ namespace RssReader.ViewModels
     {
         private readonly INavigationService navigationService;
 
-        private readonly WinRTContainer container;
-
         private readonly IDownloader downloader;
 
         private readonly IParser parser;
 
+        private readonly INewsHolder holder;
+
         public MainPageViewModel(
-            WinRTContainer container,
             INavigationService navigationService,
             IDownloader downloader,
-            IParser parser)
+            IParser parser,
+            INewsHolder holder)
         {
             this.navigationService = navigationService;
-            this.container = container;
             this.downloader = downloader;
             this.parser = parser;
+            this.holder = holder;
         }
-        
+
         public ObservableCollection<RssFeed> News { get; private set; }
 
         public void GoToDetail(RssFeed feed)
@@ -44,6 +44,7 @@ namespace RssReader.ViewModels
         public void DeleteItem(RssFeed feed)
         {
             this.News.Remove(feed);
+            this.holder.RemoveLine(feed.Link);
         }
 
         public void AddNewsLine()
@@ -60,8 +61,7 @@ namespace RssReader.ViewModels
             if (this.News == null)
             {
                 string[] news =
-                    downloader.DownloadAsync(
-                        new[] { "http://news.yandex.ru/computers.rss", "http://news.yandex.ru/auto.rss" });
+                    downloader.DownloadAsync(holder.GetNewsLines().ToArray());
 
                 this.News =
                     new ObservableCollection<RssFeed>(

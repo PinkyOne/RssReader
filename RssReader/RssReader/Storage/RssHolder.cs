@@ -24,7 +24,20 @@ namespace RssReader.Storage
 
         public void RemoveLine(string url)
         {
-            NewsHeaders.Remove(url);
+            string urlToDelete =null;
+            foreach (var header in NewsHeaders)
+            {
+                if (header==url)
+                {
+                    urlToDelete = header;
+                    break;
+                }
+            }
+            /*var urlToDelete =
+                (from header in NewsHeaders
+                 where string.Compare(header, url, StringComparison.Ordinal) == 0
+                 select header).First();*/
+            NewsHeaders.Remove(urlToDelete);
         }
     }
 }

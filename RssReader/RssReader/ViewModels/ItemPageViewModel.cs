@@ -19,39 +19,19 @@ namespace RssReader.ViewModels
 
     public class ItemPageViewModel : Screen
     {
-        private static ObservableCollection<RssItem> feed;
-
         private readonly INavigationService navigationService;
 
-        private readonly WinRTContainer container;
-
-        private readonly IDownloader downloader;
-
-        private readonly IParser parser;
-
         public ItemPageViewModel(
-            WinRTContainer container,
-            INavigationService navigationService,
-            IDownloader downloader,
-            IParser parser)
+            INavigationService navigationService)
         {
             this.navigationService = navigationService;
-            this.container = container;
-            this.downloader = downloader;
-            this.parser = parser;
         }
 
         public ObservableCollection<RssItem> Feed
         {
             get
             {
-                return feed;
-            }
-
-            private set
-            {
-                feed = value;
-                this.NotifyOfPropertyChange(() => this.Feed);
+                return Parameter.Items;
             }
         }
 
@@ -60,17 +40,6 @@ namespace RssReader.ViewModels
         public void GoToDetail(RssItem item)
         {
             this.navigationService.NavigateToViewModel<DetailPageViewModel>(item);
-        }
-
-        protected override async void OnInitialize()
-        {
-            string[] s =
-                downloader.DownloadAsync(
-                    new[] { "http://news.yandex.ru/computers.rss", "http://news.yandex.ru/auto.rss" });
-            if (this.Feed == null)
-            {
-                this.Feed = parser.ParseXml(s[0]).Items;
-            }
         }
     }
 }

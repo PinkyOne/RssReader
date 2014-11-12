@@ -31,6 +31,8 @@ namespace RssReader.Storage
 
         public string Description { get; private set; }
 
+        public string Url { get; private set; }
+
         public RssItem GetItem(string title)
         {
             return this.FirstOrDefault(itemForCheck => itemForCheck != null && itemForCheck.Title == title);

@@ -151,28 +151,28 @@ namespace RssReader.RssReader_XamlTypeInfo
             _typeNameTable = new string[12];
             _typeNameTable[0] = "Caliburn.Micro.CaliburnApplication";
             _typeNameTable[1] = "Windows.UI.Xaml.Application";
-            _typeNameTable[2] = "RssReader.Views.AddPageView";
-            _typeNameTable[3] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[4] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[5] = "RssReader.Views.DetailPageView";
-            _typeNameTable[6] = "Caliburn.Micro.Message";
-            _typeNameTable[7] = "Object";
-            _typeNameTable[8] = "String";
-            _typeNameTable[9] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[2] = "Caliburn.Micro.Message";
+            _typeNameTable[3] = "Object";
+            _typeNameTable[4] = "String";
+            _typeNameTable[5] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[6] = "RssReader.Views.AddPageView";
+            _typeNameTable[7] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[8] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[9] = "RssReader.Views.DetailPageView";
             _typeNameTable[10] = "RssReader.Views.ItemPageView";
             _typeNameTable[11] = "RssReader.Views.MainPageView";
 
             _typeTable = new global::System.Type[12];
             _typeTable[0] = typeof(global::Caliburn.Micro.CaliburnApplication);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Application);
-            _typeTable[2] = typeof(global::RssReader.Views.AddPageView);
-            _typeTable[3] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[4] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[5] = typeof(global::RssReader.Views.DetailPageView);
-            _typeTable[6] = typeof(global::Caliburn.Micro.Message);
-            _typeTable[7] = typeof(global::System.Object);
-            _typeTable[8] = typeof(global::System.String);
-            _typeTable[9] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[2] = typeof(global::Caliburn.Micro.Message);
+            _typeTable[3] = typeof(global::System.Object);
+            _typeTable[4] = typeof(global::System.String);
+            _typeTable[5] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[6] = typeof(global::RssReader.Views.AddPageView);
+            _typeTable[7] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[8] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[9] = typeof(global::RssReader.Views.DetailPageView);
             _typeTable[10] = typeof(global::RssReader.Views.ItemPageView);
             _typeTable[11] = typeof(global::RssReader.Views.MainPageView);
         }
@@ -209,8 +209,8 @@ namespace RssReader.RssReader_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_2_AddPageView() { return new global::RssReader.Views.AddPageView(); }
-        private object Activate_5_DetailPageView() { return new global::RssReader.Views.DetailPageView(); }
+        private object Activate_6_AddPageView() { return new global::RssReader.Views.AddPageView(); }
+        private object Activate_9_DetailPageView() { return new global::RssReader.Views.DetailPageView(); }
         private object Activate_10_ItemPageView() { return new global::RssReader.Views.ItemPageView(); }
         private object Activate_11_MainPageView() { return new global::RssReader.Views.MainPageView(); }
 
@@ -233,45 +233,45 @@ namespace RssReader.RssReader_XamlTypeInfo
                 xamlType = new global::RssReader.RssReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 2:   //  RssReader.Views.AddPageView
-                userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_2_AddPageView;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 3:   //  Windows.UI.Xaml.Controls.Page
-                xamlType = new global::RssReader.RssReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 4:   //  Windows.UI.Xaml.Controls.UserControl
-                xamlType = new global::RssReader.RssReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 5:   //  RssReader.Views.DetailPageView
-                userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_DetailPageView;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 6:   //  Caliburn.Micro.Message
+            case 2:   //  Caliburn.Micro.Message
                 userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.AddMemberName("Attach");
                 userType.AddMemberName("Handler");
                 xamlType = userType;
                 break;
 
-            case 7:   //  Object
+            case 3:   //  Object
                 xamlType = new global::RssReader.RssReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  String
+            case 4:   //  String
                 xamlType = new global::RssReader.RssReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 9:   //  Windows.UI.Xaml.DependencyObject
+            case 5:   //  Windows.UI.Xaml.DependencyObject
                 xamlType = new global::RssReader.RssReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  RssReader.Views.AddPageView
+                userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_6_AddPageView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 7:   //  Windows.UI.Xaml.Controls.Page
+                xamlType = new global::RssReader.RssReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 8:   //  Windows.UI.Xaml.Controls.UserControl
+                xamlType = new global::RssReader.RssReader_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 9:   //  RssReader.Views.DetailPageView
+                userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_9_DetailPageView;
+                userType.SetIsLocalType();
+                xamlType = userType;
                 break;
 
             case 10:   //  RssReader.Views.ItemPageView

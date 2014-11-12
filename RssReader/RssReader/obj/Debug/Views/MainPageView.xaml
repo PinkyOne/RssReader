@@ -10,10 +10,23 @@
     Background="#FFE8BEE8">
 
     <Grid>
-        <Button x:ConnectionId='1' Content="Refresh" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="179" micro:Message.Attach="[Event Click] = [Action Refresh()]"                />
-        <Button x:ConnectionId='2' Content="Add newsline" HorizontalAlignment="Stretch" Margin="194,0,10,0" VerticalAlignment="Top" micro:Message.Attach="[Event Click] = [Action AddNewsLine()]"                    />
+        <Button Content="Refresh" 
+                HorizontalAlignment="Left" 
+                Margin="10,0,0,0"
+                VerticalAlignment="Top"
+                Width="179"
+                micro:Message.Attach="
+                [Event Click] = [Action Refresh()]"
+                />
+        <Button Content="Add newsline" 
+                HorizontalAlignment="Stretch" 
+                Margin="194,0,10,0" 
+                VerticalAlignment="Top" 
+                micro:Message.Attach="
+                [Event Click] = [Action AddNewsLine()]"
+                />
         <ScrollViewer Name="ScrollViewer" Margin="10,53,10,0">
-            <ListView x:ConnectionId='3' Name="ListView"
+            <ListView x:ConnectionId='1' Name="ListView"
                       ItemsSource="{Binding News}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
@@ -28,18 +41,22 @@
                       SelectedIndex="-1"
                       IsActiveView="False" 
                                               
-                                        
-                                          
-                                                                                                     >
-                      
+                                       
+                                                        >
+                <ListView.Resources>
+                    <MenuFlyout x:Key="DeleteLine"/>
+                </ListView.Resources>
+                <FlyoutBase.AttachedFlyout>
+                    <StaticResource ResourceKey="DeleteLine"/>
+                </FlyoutBase.AttachedFlyout>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Title}" Margin="20,5,0,10" Foreground="Black" Style="{StaticResource BodyTextBlockStyle}" />
                             <TextBlock Text="{Binding Link}" Margin="5,0,5,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
-                            <TextBlock x:ConnectionId='4' Text="{Binding Description}" FontSize="14" Margin="30,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}"                      />
+                            <TextBlock Text="{Binding Description}" FontSize="14" Margin="30,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
                         </StackPanel>
-                    </DataTemplate>
+                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>

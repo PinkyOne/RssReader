@@ -12,6 +12,7 @@ namespace RssReader
     using System;
     using System.Collections.Generic;
 
+    using Windows.ApplicationModel;
     using Windows.UI.Xaml.Input;
 
     using Caliburn.Micro;
@@ -51,6 +52,13 @@ namespace RssReader
             this.container.PerRequest<DetailPageViewModel>();
             this.container.PerRequest<MainPageViewModel>();
             this.container.PerRequest<AddPageViewModel>();
+
+
+            var navigation = this.container.GetInstance(typeof(INavigationService), null) as INavigationService;
+            if (navigation != null)
+            {
+                navigation.ResumeState();
+            }
         }
 
         protected override void PrepareViewFirst(Frame rootFrame)
@@ -76,6 +84,25 @@ namespace RssReader
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             DisplayRootView<MainPageView>();
+        }
+
+        protected override void OnSuspending(object sender, SuspendingEventArgs e)
+        {
+            /*
+            var navigation = this.container.GetInstance(typeof(INavigationService), null) as INavigationService;
+            if (navigation != null)
+            {
+                navigation.SuspendState();
+            }*/
+        }
+
+        protected override void OnResuming(object sender, object e)
+        {
+           /* var navigation = this.container.GetInstance(typeof(INavigationService), null) as INavigationService;
+            if (navigation != null)
+            {
+                navigation.ResumeState();
+            }*/
         }
     }
 }

@@ -32,7 +32,6 @@
       <RootProperty Name="FontFamily" />
       <RootProperty Name="SelectionHighlightColor" />
       <RootProperty Name="Inlines" />
-      <RootEvent Name="RightTapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Margin" />
@@ -40,7 +39,7 @@
       <RootProperty Name="Text" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Height" />
-      <RootEvent Name="ManipulationStarted" />
+      <RootEvent Name="GotFocus" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Content" />
@@ -48,7 +47,10 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
-      <RootEvent Name="Click" />
+    </RootType>
+    <RootType FullName="Caliburn.Micro.Message">
+      <RootMethod Name="GetAttach" />
+      <RootMethod Name="SetAttach" />
     </RootType>
     <RootType FullName="RssReader.Views.AddPageView" />
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
@@ -71,7 +73,9 @@
       <RootProperty Name="Children" />
       <RootProperty Name="Orientation" />
     </RootType>
-    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension">
+      <RootProperty Name="ResourceKey" />
+    </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.NullExtension" />
     <RootType FullName="RssReader.Views.DetailPageView" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
@@ -85,21 +89,21 @@
       <RootProperty Name="SelectedIndex" />
       <RootProperty Name="IsActiveView" />
       <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="Resources" />
       <RootEvent Name="ItemClick" />
       <RootEvent Name="Loaded" />
-      <RootEvent Name="Holding" />
       <RootEvent Name="RightTapped" />
-      <RootEvent Name="SelectionChanged" />
-    </RootType>
-    <RootType FullName="Caliburn.Micro.Message">
-      <RootMethod Name="GetAttach" />
-      <RootMethod Name="SetAttach" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding" />
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
     </RootType>
     <RootType FullName="RssReader.Views.ItemPageView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.FlyoutBase">
+      <RootMethod Name="GetAttachedFlyout" />
+      <RootMethod Name="SetAttachedFlyout" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout" />
     <RootType FullName="RssReader.Views.MainPageView" />
   </Roots.RootTypes>
 </Roots>

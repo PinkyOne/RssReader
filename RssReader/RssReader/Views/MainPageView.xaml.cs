@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace RssReader.Views
 {
+    using RssReader.Storage;
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -48,43 +50,12 @@ namespace RssReader.Views
                 verticalOffset,
                 this.ScrollViewer.ZoomFactor);
         }
-
-        private void OnLongTap(object sender, HoldingRoutedEventArgs e)
+        private void ListViewRightTapped1(object sender, RightTappedRoutedEventArgs e)
         {
-            var item = sender as SelectorItem;
-            if (item == null)
-                return;
+            var senderElement = sender as FrameworkElement;
+            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
 
-        }
-
-        private void Refresh(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddNewsline(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void blocktapped(object sender, RightTappedRoutedEventArgs e)
-        {
-
-        }
-
-        private void tapped(object sender, RightTappedRoutedEventArgs e)
-        {
-
+            flyoutBase.ShowAt(senderElement);
         }
     }
 }

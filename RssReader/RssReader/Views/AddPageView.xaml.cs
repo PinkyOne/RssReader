@@ -27,18 +27,10 @@ namespace RssReader.Views
             this.InitializeComponent();
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void OnGotFocus(object sender, RoutedEventArgs e)
         {
-        }
-
-        private void OnManipulationStart(object sender, ManipulationStartedRoutedEventArgs e)
-        {
-            urlTextBox.Text = string.Empty;
+            urlTextBox.Text = "http://";
+            urlTextBox.Select(urlTextBox.Text.Length, 0);
         }
     }
 }

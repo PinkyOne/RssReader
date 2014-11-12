@@ -19,7 +19,7 @@ namespace RssReader.Storage
         public string[] DownloadAsync(string[] urls)
         {
             Task<string>[] tasks = (from url in urls let task = DownloadAsync(url) select task).ToArray();
-            Task<string>.WaitAll(tasks);
+            Task.WaitAll(tasks);
             return (from task in tasks let feed = task.Result select feed).ToArray();
         }
     }
