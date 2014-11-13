@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RssReader.Storage
+﻿namespace RssReader.Storage
 {
     using System.Collections.ObjectModel;
 
     public interface INewsHolder
     {
-        ObservableCollection<string> GetNewsLines();
+        ObservableCollection<RssFeed> GetNewsLines();
 
-        void AddLine(string url);
+        void AddLine(RssFeed feed);
 
-        void RemoveLine(string url);
+        void RemoveLine(RssFeed feed);
+
+        void Refresh(IDownloader loader, IParser parser);
     }
 }

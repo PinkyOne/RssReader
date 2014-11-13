@@ -15,7 +15,7 @@ namespace RssReader.Storage
 
     public class RssXmlParser : IParser
     {
-        public RssFeed ParseXml(string feed)
+        public RssFeed ParseXml(string url, string feed)
         {
             var xmlDoc = XDocument.Parse(feed);
 
@@ -42,7 +42,7 @@ namespace RssReader.Storage
                 var items =
                     new ObservableCollection<RssItem>(from node in nodes let item = new RssItem(node) select item);
 
-                return new RssFeed(title, link, description, items);
+                return new RssFeed(url, title, link, description, items);
             }
             throw new Exception("Ошибка в XML. Описание канала не найдено!");
         }

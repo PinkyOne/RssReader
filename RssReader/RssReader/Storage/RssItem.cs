@@ -48,6 +48,8 @@ namespace RssReader.Storage
 
         public string PublicDate { get; private set; }
 
+        public bool IsViewed { get; set; }
+
         public override string ToString()
         {
             return this.Title + Environment.NewLine + this.Description + Environment.NewLine + this.PublicDate;

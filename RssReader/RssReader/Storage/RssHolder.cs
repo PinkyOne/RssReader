@@ -1,43 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RssReader.Storage
+﻿namespace RssReader.Storage
 {
     using System.Collections.ObjectModel;
+    using System.Linq;
+
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+
+    using Caliburn.Micro;
 
     public class RssHolder : INewsHolder
     {
-        private static readonly ObservableCollection<string> NewsHeaders = new ObservableCollection<string>();
+        private static ObservableCollection<RssFeed> newsHeaders = new ObservableCollection<RssFeed>();
 
-        public ObservableCollection<string> GetNewsLines()
+        public ObservableCollection<RssFeed> GetNewsLines()
         {
-            return NewsHeaders;
+            return newsHeaders;
         }
 
-        public void AddLine(string url)
+        public void AddLine(RssFeed feed)
         {
-            NewsHeaders.Add(url);
+            Execute.OnUIThread(() => newsHeaders.Add(feed));
         }
 
-        public void RemoveLine(string url)
+        public void RemoveLine(RssFeed feed)
         {
-            string urlToDelete =null;
-            foreach (var header in NewsHeaders)
+            newsHeaders.Remove(feed);
+        }
+
+        public async void Refresh(IDownloader loader, IParser parser)
+        {
+            for (int i = 0; i < newsHeaders.Count; i++)
             {
-                if (header==url)
-                {
-                    urlToDelete = header;
-                    break;
-                }
+                var feed = newsHeaders[i];
+                feed = parser.ParseXml(feed.Url, await loader.DownloadAsync(feed.Url));
+                newsHeaders[i] = feed;
             }
-            /*var urlToDelete =
-                (from header in NewsHeaders
-                 where string.Compare(header, url, StringComparison.Ordinal) == 0
-                 select header).First();*/
-            NewsHeaders.Remove(urlToDelete);
         }
     }
 }

@@ -13,17 +13,18 @@ namespace RssReader.Storage
 
     using Microsoft.Xaml.Interactivity;
 
-    public class RssFeed : ObservableCollection<RssItem>
+    public class RssFeed
     {
-        public RssFeed(string title, string link, string description, ObservableCollection<RssItem> items)
+        public RssFeed(string url, string title, string link, string description, ObservableCollection<RssItem> items)
         {
+            this.Url = url;
             this.Title = title;
             this.Link = link;
             this.Description = description;
             this.Items = items;
         }
-        
-        public new ObservableCollection<RssItem> Items { get; private set; }
+
+        public ObservableCollection<RssItem> Items { get; private set; }
 
         public string Title { get; private set; }
 
@@ -32,10 +33,5 @@ namespace RssReader.Storage
         public string Description { get; private set; }
 
         public string Url { get; private set; }
-
-        public RssItem GetItem(string title)
-        {
-            return this.FirstOrDefault(itemForCheck => itemForCheck != null && itemForCheck.Title == title);
-        }
     }
 }

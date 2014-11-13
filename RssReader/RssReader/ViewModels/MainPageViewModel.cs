@@ -22,6 +22,8 @@ namespace RssReader.ViewModels
 
         private readonly INewsHolder holder;
 
+        private EventAggregator eventAggregator = new EventAggregator();
+
         public MainPageViewModel(
             INavigationService navigationService,
             IDownloader downloader,
@@ -44,7 +46,7 @@ namespace RssReader.ViewModels
         public void DeleteItem(RssFeed feed)
         {
             this.News.Remove(feed);
-            this.holder.RemoveLine(feed.Link);
+            this.holder.RemoveLine(feed);
         }
 
         public void AddNewsLine()
@@ -52,20 +54,16 @@ namespace RssReader.ViewModels
             navigationService.NavigateToViewModel<AddPageViewModel>();
         }
 
-        public async void Refresh()
+        public new void Refresh()
         {
+            holder.Refresh(downloader, parser);
         }
 
         protected override void OnInitialize()
         {
             if (this.News == null)
             {
-                string[] news =
-                    downloader.DownloadAsync(holder.GetNewsLines().ToArray());
-
-                this.News =
-                    new ObservableCollection<RssFeed>(
-                        (from stringFeed in news let feed = parser.ParseXml(stringFeed) select feed).ToArray());
+                this.News = holder.GetNewsLines();
             }
         }
     }

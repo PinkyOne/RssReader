@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 
 namespace RssReader.Storage
 {
+    using System;
+    using System.Collections.ObjectModel;
     using System.Net.Http;
     
     public class RssDownloader : IDownloader
@@ -13,7 +12,14 @@ namespace RssReader.Storage
         public async Task<string> DownloadAsync(string url)
         {
             var client = new HttpClient();
-            return await client.GetStringAsync(url).ConfigureAwait(false);
+            try
+            {
+                return await client.GetStringAsync(url).ConfigureAwait(false);
+            }
+            catch (HttpRequestException e)
+            {
+                throw;
+            }
         }
 
         public string[] DownloadAsync(string[] urls)

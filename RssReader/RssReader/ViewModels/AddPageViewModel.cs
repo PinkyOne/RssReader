@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace RssReader.ViewModels
 {
+    using System.Runtime.InteropServices;
+
+    using Windows.UI.Core;
+
     using Caliburn.Micro;
 
     using RssReader.Storage;
@@ -16,16 +20,24 @@ namespace RssReader.ViewModels
 
         private readonly INewsHolder holder;
 
-        public AddPageViewModel(INavigationService navigationService, INewsHolder holder)
+        private readonly IDownloader loader;
+
+        private readonly IParser parser;
+
+        public AddPageViewModel(INavigationService navigationService, INewsHolder holder,IDownloader loader,IParser parser)
         {
+            this.parser = parser;
             this.holder = holder;
+            this.loader = loader;
             this.navigationService = navigationService;
         }
 
-        public void AddNewsLine(string url)
+        public async void AddNewsLine(string url)
         {
-            holder.AddLine(url);
             navigationService.NavigateToViewModel<MainPageViewModel>();
+            string feed = await loader.DownloadAsync(url).ConfigureAwait(false);
+            var rssFeed = parser.ParseXml(url, feed);
+            holder.AddLine(rssFeed);
         }
     }
 }

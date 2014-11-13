@@ -95,6 +95,8 @@
     <Compile Include="Storage\RssXmlParser.cs" />
     <Compile Include="Storage\RssItem.cs" />
     <Compile Include="Storage\RssFeed.cs" />
+    <Compile Include="Storage\SuspensionManagerException.cs" />
+    <Compile Include="Storage\SuspensionManager.cs" />
     <Compile Include="ViewModels\AddPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
     <Compile Include="ViewModels\ItemPageViewModel.cs" />
