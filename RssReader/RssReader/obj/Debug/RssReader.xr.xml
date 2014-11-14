@@ -5,8 +5,10 @@
     <RootPropertyPathName Name="PublicDate" />
     <RootPropertyPathName Name="Link" />
     <RootPropertyPathName Name="Title" />
+    <RootPropertyPathName Name="Opacity" />
     <RootPropertyPathName Name="News" />
     <RootPropertyPathName Name="Description" />
+    <RootPropertyPathName Name="CountUnviewedItems" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Caliburn.Micro.CaliburnApplication" />
@@ -32,6 +34,7 @@
       <RootProperty Name="FontFamily" />
       <RootProperty Name="SelectionHighlightColor" />
       <RootProperty Name="Inlines" />
+      <RootProperty Name="Opacity" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Margin" />
@@ -71,6 +74,7 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Children" />
+      <RootProperty Name="Name" />
       <RootProperty Name="Orientation" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension">

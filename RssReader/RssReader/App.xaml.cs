@@ -34,7 +34,7 @@ namespace RssReader
             InitializeComponent();
         }
 
-        protected override void Configure()
+        protected async override void Configure()
         {
             this.container = new WinRTContainer();
 
@@ -84,57 +84,14 @@ namespace RssReader
 
         protected async override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            var rootFrame = Window.Current.Content as Frame;
-
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (rootFrame == null)
-            {
-                // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
-
-                // Associate the frame with a SuspensionManager key                                
-                SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
-
-                if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    // Restore the saved session state only when appropriate
-                    try
-                    {
-                        await SuspensionManager.RestoreAsync();
-                    }
-                    catch (SuspensionManagerException)
-                    {
-                        // Something went wrong restoring state.
-                        // Assume there is no state and continue
-                    }
-                }
-
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
-            }
-            if (rootFrame.Content == null || !string.IsNullOrEmpty(args.Arguments))
-            {
-                // When the navigation stack isn't restored or there are launch arguments
-                // indicating an alternate launch (e.g.: via toast or secondary tile), 
-                // navigate to the appropriate page, configuring the new page by passing required 
-                // information as a navigation parameter
-                if (!rootFrame.Navigate(typeof(MainPageView), args.Arguments))
-                {
-                    throw new Exception("Failed to create initial page");
-                }
-            }
-
-            // Ensure the current window is active
-            Window.Current.Activate();
-
             DisplayRootView<MainPageView>();
         }
 
         protected async override void OnSuspending(object sender, SuspendingEventArgs e)
         {
+
             var deferral = e.SuspendingOperation.GetDeferral();
-            await SuspensionManager.SaveAsync();
+            await SuspensionManager.SaveAsync(container.GetInstance<INewsHolder>().GetNewsLines());
             deferral.Complete();
         }
     }

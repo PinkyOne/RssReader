@@ -1,5 +1,6 @@
 ﻿namespace RssReader.Storage
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Linq;
 
@@ -11,6 +12,18 @@
     public class RssHolder : INewsHolder
     {
         private static ObservableCollection<RssFeed> newsHeaders = new ObservableCollection<RssFeed>();
+
+        public RssHolder()
+        {
+            try
+            {
+                newsHeaders = new ObservableCollection<RssFeed>(SuspensionManager.RestoreAsync().Result);
+            }
+            catch (Exception)
+            {
+                newsHeaders = new ObservableCollection<RssFeed>();
+            }
+        }
 
         public ObservableCollection<RssFeed> GetNewsLines()
         {

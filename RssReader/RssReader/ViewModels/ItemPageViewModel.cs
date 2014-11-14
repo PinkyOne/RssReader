@@ -40,6 +40,8 @@ namespace RssReader.ViewModels
         public void GoToDetail(RssItem item)
         {
             this.navigationService.NavigateToViewModel<DetailPageViewModel>(item);
+            item.Opacity = 0.5;
+            Parameter.CountUnviewedItems--;
         }
     }
 }

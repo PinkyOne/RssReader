@@ -10,10 +10,12 @@ namespace RssReader.Storage
 {
     using System;
     using System.Linq;
+    using System.Runtime.Serialization;
     using System.Xml.Linq;
 
     using Caliburn.Micro;
 
+    [DataContract]
     public class RssItem : PropertyChangedBase
     {
         public RssItem(XElement rssItems)
@@ -33,22 +35,32 @@ namespace RssReader.Storage
             this.PublicDate =
                 (from xmlElement in rssItems.Elements() where xmlElement.Name.LocalName == "pubDate" select xmlElement)
                     .First().Value;
+
+            this.Opacity = 1.0;
         }
 
         public string Item
         {
-            get { return this.ToString(); }
+            get
+            {
+                return this.ToString();
+            }
         }
-        
+
+        [DataMember]
         public string Title { get; private set; }
 
+        [DataMember]
         public string Link { get; private set; }
 
+        [DataMember]
         public string Description { get; private set; }
 
+        [DataMember]
         public string PublicDate { get; private set; }
 
-        public bool IsViewed { get; set; }
+        [DataMember]
+        public double Opacity { get; set; }
 
         public override string ToString()
         {

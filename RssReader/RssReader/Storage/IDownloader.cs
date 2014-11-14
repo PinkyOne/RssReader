@@ -5,7 +5,5 @@
     public interface IDownloader
     {
         Task<string> DownloadAsync(string url);
-
-        string[] DownloadAsync(string[] urls);
     }
 }
