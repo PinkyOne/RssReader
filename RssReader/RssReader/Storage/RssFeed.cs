@@ -44,5 +44,7 @@ namespace RssReader.Storage
 
         [DataMember]
         public int CountUnviewedItems { get; set; }
+
+        public bool OnDelete { get; set; }
     }
 }

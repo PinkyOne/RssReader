@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -18,17 +20,11 @@ namespace RssReader.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddPageView : Page
+    public sealed partial class ExceptionPageView : Page
     {
-        public AddPageView()
+        public ExceptionPageView()
         {
             this.InitializeComponent();
-        }
-
-        private void OnGotFocus(object sender, RoutedEventArgs e)
-        {
-            urlTextBox.Text = "http://";
-            urlTextBox.Select(urlTextBox.Text.Length, 0);
         }
     }
 }

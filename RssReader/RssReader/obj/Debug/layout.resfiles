@@ -1,4 +1,7 @@
+Assets\iconrefresh.png
 Assets\Logo.scale-240.png
+Assets\plus.bmp
+Assets\Plus-png.png
 Assets\SmallLogo.scale-240.png
 Assets\SplashScreen.scale-240.png
 Assets\Square71x71Logo.scale-240.png
@@ -8,5 +11,6 @@ App.xbf
 RssReader.xr.xml
 Views\AddPageView.xbf
 Views\DetailPageView.xbf
+Views\ExceptionPageView.xbf
 Views\ItemPageView.xbf
 Views\MainPageView.xbf

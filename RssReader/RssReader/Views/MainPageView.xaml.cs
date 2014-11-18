@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +16,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace RssReader.Views
 {
+    using Caliburn.Micro;
+
     using RssReader.Storage;
 
     /// <summary>
@@ -50,12 +53,32 @@ namespace RssReader.Views
                 verticalOffset,
                 this.ScrollViewer.ZoomFactor);
         }
+
         private void ListViewRightTapped1(object sender, RightTappedRoutedEventArgs e)
         {
-            var senderElement = sender as FrameworkElement;
-            FlyoutBase flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement);
+            ListView listView = sender as ListView;
+            if (listView != null)
+            {
+                Flyout.ShowAttachedFlyout(listView);
+            }
+        }
 
-            flyoutBase.ShowAt(senderElement);
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+            var flyout = this.ListView.FindName("Flyout") as Flyout;
+            if (flyout != null)
+            {
+                flyout.Hide();
+            }
+        }
+
+        private void ExceptionFlyoutButtonClick(object sender, RoutedEventArgs e)
+        {
+            var flyout = this.ListView.FindName("ExceptionFlyout") as Flyout;
+            if (flyout != null)
+            {
+                flyout.Hide();
+            }
         }
     }
 }

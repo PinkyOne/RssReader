@@ -99,12 +99,16 @@
     <Compile Include="Storage\SuspensionManager.cs" />
     <Compile Include="ViewModels\AddPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
+    <Compile Include="ViewModels\ExceptionPageViewModel.cs" />
     <Compile Include="ViewModels\ItemPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\AddPageView.xaml.cs">
       <DependentUpon>AddPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DetailPageView.xaml.cs" />
+    <Compile Include="Views\ExceptionPageView.xaml.cs">
+      <DependentUpon>ExceptionPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ItemPageView.xaml.cs" />
     <Compile Include="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
@@ -116,7 +120,10 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\iconrefresh.png" />
     <Content Include="Assets\Logo.scale-240.png" />
+    <Content Include="Assets\Plus-png.png" />
+    <Content Include="Assets\plus.bmp" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-240.png" />
     <Content Include="Assets\Square71x71Logo.scale-240.png" />
@@ -137,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Page>
+    <Page Include="Views\ExceptionPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ItemPageView.xaml">
       <Generator>MSBuild:Compile</Generator>

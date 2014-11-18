@@ -18,6 +18,10 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
       <RootProperty Name="Children" />
+      <RootProperty Name="ChildrenTransitions" />
+      <RootProperty Name="RowDefinitions" />
+      <RootMethod Name="GetRow" />
+      <RootMethod Name="SetRow" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="HorizontalAlignment" />
@@ -33,6 +37,7 @@
       <RootProperty Name="Style" />
       <RootProperty Name="FontFamily" />
       <RootProperty Name="SelectionHighlightColor" />
+      <RootProperty Name="CharacterSpacing" />
       <RootProperty Name="Inlines" />
       <RootProperty Name="Opacity" />
     </RootType>
@@ -50,6 +55,17 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="MinHeight" />
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="RequestedTheme" />
+      <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="Projection" />
+      <RootProperty Name="RenderTransform" />
+      <RootEvent Name="Click" />
     </RootType>
     <RootType FullName="Caliburn.Micro.Message">
       <RootMethod Name="GetAttach" />
@@ -74,14 +90,21 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Children" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Name" />
       <RootProperty Name="Orientation" />
+      <RootProperty Name="Background" />
     </RootType>
-    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension">
-      <RootProperty Name="ResourceKey" />
-    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.NullExtension" />
     <RootType FullName="RssReader.Views.DetailPageView" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.EntranceThemeTransition" />
+    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="RssReader.Views.ExceptionPageView" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Name" />
       <RootProperty Name="ItemsSource" />
@@ -93,7 +116,6 @@
       <RootProperty Name="SelectedIndex" />
       <RootProperty Name="IsActiveView" />
       <RootProperty Name="ItemTemplate" />
-      <RootProperty Name="Resources" />
       <RootEvent Name="ItemClick" />
       <RootEvent Name="Loaded" />
       <RootEvent Name="RightTapped" />
@@ -107,7 +129,30 @@
       <RootMethod Name="GetAttachedFlyout" />
       <RootMethod Name="SetAttachedFlyout" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Flyout">
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentControl" />
+    <RootType FullName="Caliburn.Micro.View">
+      <RootMethod Name="GetModel" />
+      <RootMethod Name="SetModel" />
+      <RootMethod Name="GetContext" />
+      <RootMethod Name="SetContext" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.PlaneProjection">
+      <RootProperty Name="RotationX" />
+      <RootProperty Name="RotationY" />
+      <RootProperty Name="RotationZ" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.CompositeTransform">
+      <RootProperty Name="Rotation" />
+      <RootProperty Name="ScaleY" />
+      <RootProperty Name="ScaleX" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.ImageBrush">
+      <RootProperty Name="ImageSource" />
+      <RootProperty Name="Stretch" />
+    </RootType>
     <RootType FullName="RssReader.Views.MainPageView" />
   </Roots.RootTypes>
 </Roots>

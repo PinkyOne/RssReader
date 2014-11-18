@@ -12,33 +12,37 @@ namespace RssReader
     using System;
     using System.Collections.Generic;
 
-    using Windows.ApplicationModel;
-    using Windows.UI.Xaml;
-    using Windows.UI.Xaml.Input;
-
     using Caliburn.Micro;
 
     using RssReader.Storage;
     using RssReader.ViewModels;
     using RssReader.Views;
 
+    using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
+
+    using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Input;
 
     public sealed partial class App
     {
         private WinRTContainer container;
+
+        private SimpleContainer childContainer;
 
         public App()
         {
             InitializeComponent();
         }
 
-        protected async override void Configure()
+        protected override void Configure()
         {
             this.container = new WinRTContainer();
 
             this.container.RegisterWinRTServices();
+
+            childContainer = this.container.CreateChildContainer();
 
             this.container.Singleton<IDownloader, RssDownloader>();
             this.container.Singleton<IParser, RssXmlParser>();
@@ -53,13 +57,6 @@ namespace RssReader
             this.container.PerRequest<DetailPageViewModel>();
             this.container.PerRequest<MainPageViewModel>();
             this.container.PerRequest<AddPageViewModel>();
-
-
-            var navigation = this.container.GetInstance(typeof(INavigationService), null) as INavigationService;
-            if (navigation != null)
-            {
-                navigation.ResumeState();
-            }
         }
 
         protected override void PrepareViewFirst(Frame rootFrame)
@@ -82,14 +79,13 @@ namespace RssReader
             this.container.BuildUp(instance);
         }
 
-        protected async override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             DisplayRootView<MainPageView>();
         }
 
-        protected async override void OnSuspending(object sender, SuspendingEventArgs e)
+        protected override async void OnSuspending(object sender, SuspendingEventArgs e)
         {
-
             var deferral = e.SuspendingOperation.GetDeferral();
             await SuspensionManager.SaveAsync(container.GetInstance<INewsHolder>().GetNewsLines());
             deferral.Complete();

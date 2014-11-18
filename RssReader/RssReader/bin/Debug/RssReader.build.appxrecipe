@@ -40,9 +40,15 @@
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\packages\Caliburn.Micro.2.0.1\lib\wpa81\Microsoft.Xaml.Interactivity.dll">
       <PackagePath>Microsoft.Xaml.Interactivity.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\iconrefresh.png">
+      <PackagePath>Assets\iconrefresh.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\Logo.scale-240.png">
       <PackagePath>Assets\Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\Plus-png.png">
+      <PackagePath>Assets\Plus-png.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\SmallLogo.scale-240.png">
       <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
@@ -64,6 +70,9 @@
       <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\plus.bmp">
+      <PackagePath>Assets\plus.bmp</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
@@ -72,6 +81,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\DetailPageView.xbf">
       <PackagePath>Views\DetailPageView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\ExceptionPageView.xbf">
+      <PackagePath>Views\ExceptionPageView.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\ItemPageView.xbf">
       <PackagePath>Views\ItemPageView.xbf</PackagePath>

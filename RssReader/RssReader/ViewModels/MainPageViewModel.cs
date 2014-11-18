@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RssReader.ViewModels
 {
     using System.Collections.ObjectModel;
+    using System.Net.Http;
 
     using Caliburn.Micro;
 
@@ -36,17 +34,34 @@ namespace RssReader.ViewModels
             this.holder = holder;
         }
 
-        public ObservableCollection<RssFeed> News { get; private set; }
+        public ObservableCollection<RssFeed> News
+        {
+            get
+            {
+                return holder.GetNewsLines();
+            }
+        }
 
         public void GoToDetail(RssFeed feed)
         {
             this.navigationService.NavigateToViewModel<ItemPageViewModel>(feed);
         }
 
-        public void DeleteItem(RssFeed feed)
+        public void UnmarkItem()
         {
-            this.News.Remove(feed);
-            this.holder.RemoveLine(feed);
+            var line = from feed in News where feed.OnDelete select feed;
+            if (line.Any()) line.First().OnDelete = false;
+        }
+
+        public void PrepareToDelete(RssFeed feed)
+        {
+            this.UnmarkItem();
+            feed.OnDelete = true;
+        }
+
+        public void DeleteItem()
+        {
+            this.holder.RemoveLine((from line in News where line.OnDelete select line).First());
         }
 
         public void AddNewsLine()
@@ -56,15 +71,7 @@ namespace RssReader.ViewModels
 
         public new void Refresh()
         {
-            holder.Refresh(downloader, parser);
-        }
-
-        protected override void OnInitialize()
-        {
-            if (this.News == null)
-            {
-                this.News = holder.GetNewsLines();
-            }
+                holder.Refresh(downloader, parser);
         }
     }
 }

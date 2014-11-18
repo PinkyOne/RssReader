@@ -148,7 +148,7 @@ namespace RssReader.RssReader_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[12];
+            _typeNameTable = new string[16];
             _typeNameTable[0] = "Caliburn.Micro.CaliburnApplication";
             _typeNameTable[1] = "Windows.UI.Xaml.Application";
             _typeNameTable[2] = "Caliburn.Micro.Message";
@@ -159,10 +159,14 @@ namespace RssReader.RssReader_XamlTypeInfo
             _typeNameTable[7] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[8] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[9] = "RssReader.Views.DetailPageView";
-            _typeNameTable[10] = "RssReader.Views.ItemPageView";
-            _typeNameTable[11] = "RssReader.Views.MainPageView";
+            _typeNameTable[10] = "RssReader.Views.ExceptionPageView";
+            _typeNameTable[11] = "RssReader.Views.ItemPageView";
+            _typeNameTable[12] = "Caliburn.Micro.View";
+            _typeNameTable[13] = "System.Nullable`1<Boolean>";
+            _typeNameTable[14] = "System.ValueType";
+            _typeNameTable[15] = "RssReader.Views.MainPageView";
 
-            _typeTable = new global::System.Type[12];
+            _typeTable = new global::System.Type[16];
             _typeTable[0] = typeof(global::Caliburn.Micro.CaliburnApplication);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Application);
             _typeTable[2] = typeof(global::Caliburn.Micro.Message);
@@ -173,8 +177,12 @@ namespace RssReader.RssReader_XamlTypeInfo
             _typeTable[7] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[8] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[9] = typeof(global::RssReader.Views.DetailPageView);
-            _typeTable[10] = typeof(global::RssReader.Views.ItemPageView);
-            _typeTable[11] = typeof(global::RssReader.Views.MainPageView);
+            _typeTable[10] = typeof(global::RssReader.Views.ExceptionPageView);
+            _typeTable[11] = typeof(global::RssReader.Views.ItemPageView);
+            _typeTable[12] = typeof(global::Caliburn.Micro.View);
+            _typeTable[13] = typeof(global::System.Nullable<global::System.Boolean>);
+            _typeTable[14] = typeof(global::System.ValueType);
+            _typeTable[15] = typeof(global::RssReader.Views.MainPageView);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -211,8 +219,9 @@ namespace RssReader.RssReader_XamlTypeInfo
 
         private object Activate_6_AddPageView() { return new global::RssReader.Views.AddPageView(); }
         private object Activate_9_DetailPageView() { return new global::RssReader.Views.DetailPageView(); }
-        private object Activate_10_ItemPageView() { return new global::RssReader.Views.ItemPageView(); }
-        private object Activate_11_MainPageView() { return new global::RssReader.Views.MainPageView(); }
+        private object Activate_10_ExceptionPageView() { return new global::RssReader.Views.ExceptionPageView(); }
+        private object Activate_11_ItemPageView() { return new global::RssReader.Views.ItemPageView(); }
+        private object Activate_15_MainPageView() { return new global::RssReader.Views.MainPageView(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -274,16 +283,42 @@ namespace RssReader.RssReader_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 10:   //  RssReader.Views.ItemPageView
+            case 10:   //  RssReader.Views.ExceptionPageView
                 userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_10_ItemPageView;
+                userType.Activator = Activate_10_ExceptionPageView;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 11:   //  RssReader.Views.MainPageView
+            case 11:   //  RssReader.Views.ItemPageView
                 userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_11_MainPageView;
+                userType.Activator = Activate_11_ItemPageView;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 12:   //  Caliburn.Micro.View
+                userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.AddMemberName("Model");
+                userType.AddMemberName("Context");
+                userType.AddMemberName("ApplyConventions");
+                xamlType = userType;
+                break;
+
+            case 13:   //  System.Nullable`1<Boolean>
+                userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 14:   //  System.ValueType
+                userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                xamlType = userType;
+                break;
+
+            case 15:   //  RssReader.Views.MainPageView
+                userType = new global::RssReader.RssReader_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_15_MainPageView;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -361,6 +396,30 @@ namespace RssReader.RssReader_XamlTypeInfo
         {
             global::Caliburn.Micro.Message.SetHandler((global::Windows.UI.Xaml.DependencyObject)instance, (global::System.Object)Value);
         }
+        private object get_2_View_Model(object instance)
+        {
+            return global::Caliburn.Micro.View.GetModel((global::Windows.UI.Xaml.DependencyObject)instance);
+        }
+        private void set_2_View_Model(object instance, object Value)
+        {
+            global::Caliburn.Micro.View.SetModel((global::Windows.UI.Xaml.DependencyObject)instance, (global::System.Object)Value);
+        }
+        private object get_3_View_Context(object instance)
+        {
+            return global::Caliburn.Micro.View.GetContext((global::Windows.UI.Xaml.DependencyObject)instance);
+        }
+        private void set_3_View_Context(object instance, object Value)
+        {
+            global::Caliburn.Micro.View.SetContext((global::Windows.UI.Xaml.DependencyObject)instance, (global::System.Object)Value);
+        }
+        private object get_4_View_ApplyConventions(object instance)
+        {
+            return global::Caliburn.Micro.View.GetApplyConventions((global::Windows.UI.Xaml.DependencyObject)instance);
+        }
+        private void set_4_View_ApplyConventions(object instance, object Value)
+        {
+            global::Caliburn.Micro.View.SetApplyConventions((global::Windows.UI.Xaml.DependencyObject)instance, (global::System.Nullable<global::System.Boolean>)Value);
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
@@ -384,6 +443,30 @@ namespace RssReader.RssReader_XamlTypeInfo
                 xamlMember.SetIsAttachable();
                 xamlMember.Getter = get_1_Message_Handler;
                 xamlMember.Setter = set_1_Message_Handler;
+                break;
+            case "Caliburn.Micro.View.Model":
+                userType = (global::RssReader.RssReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Caliburn.Micro.View");
+                xamlMember = new global::RssReader.RssReader_XamlTypeInfo.XamlMember(this, "Model", "Object");
+                xamlMember.SetTargetTypeName("Windows.UI.Xaml.DependencyObject");
+                xamlMember.SetIsAttachable();
+                xamlMember.Getter = get_2_View_Model;
+                xamlMember.Setter = set_2_View_Model;
+                break;
+            case "Caliburn.Micro.View.Context":
+                userType = (global::RssReader.RssReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Caliburn.Micro.View");
+                xamlMember = new global::RssReader.RssReader_XamlTypeInfo.XamlMember(this, "Context", "Object");
+                xamlMember.SetTargetTypeName("Windows.UI.Xaml.DependencyObject");
+                xamlMember.SetIsAttachable();
+                xamlMember.Getter = get_3_View_Context;
+                xamlMember.Setter = set_3_View_Context;
+                break;
+            case "Caliburn.Micro.View.ApplyConventions":
+                userType = (global::RssReader.RssReader_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Caliburn.Micro.View");
+                xamlMember = new global::RssReader.RssReader_XamlTypeInfo.XamlMember(this, "ApplyConventions", "System.Nullable`1<Boolean>");
+                xamlMember.SetTargetTypeName("Windows.UI.Xaml.DependencyObject");
+                xamlMember.SetIsAttachable();
+                xamlMember.Getter = get_4_View_ApplyConventions;
+                xamlMember.Setter = set_4_View_ApplyConventions;
                 break;
             }
             return xamlMember;

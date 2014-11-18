@@ -9,24 +9,48 @@
     mc:Ignorable="d"
     Background="#FFE8BEE8">
 
-    <Grid>
-        <Button Content="Refresh" 
-                HorizontalAlignment="Left" 
-                Margin="10,0,0,0"
+    <Grid x:Name="Grid">
+        <FlyoutBase.AttachedFlyout>
+            <Flyout x:Name="ExceptionFlyout">
+                <StackPanel>
+                    <TextBlock x:Name="TextBlock"></TextBlock>
+                    <Button x:ConnectionId='1' Content="OK"                                   ></Button>
+                    <ContentControl 
+                        micro:View.Model="{Binding}" 
+                        micro:View.Context="MainPageViewModel">
+                    </ContentControl>
+                </StackPanel>
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>
+        <Button HorizontalAlignment="Left" 
+                Margin="149,0,0,0"
                 VerticalAlignment="Top"
-                Width="179"
+                Width="73"
                 micro:Message.Attach="
-                [Event Click] = [Action Refresh()]"
-                />
-        <Button Content="Add newsline" 
-                HorizontalAlignment="Stretch" 
-                Margin="194,0,10,0" 
+                [Event Click] = [Action Refresh()]" Height="77" MinHeight="40" MinWidth="40">
+            <Button.Background>
+                <ImageBrush ImageSource="ms-appx:///Assets/iconrefresh.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <Button HorizontalAlignment="Stretch" 
+                Margin="250,-3,41,0" 
                 VerticalAlignment="Top" 
-                micro:Message.Attach="
-                [Event Click] = [Action AddNewsLine()]"
-                />
-        <ScrollViewer Name="ScrollViewer" Margin="10,53,10,0">
-            <ListView x:ConnectionId='1' Name="ListView"
+                micro:Message.Attach=
+                "[Event Click] = [Action AddNewsLine()]" 
+                BorderBrush="{x:Null}" 
+                Foreground="{x:Null}" RequestedTheme="Light" Height="81" RenderTransformOrigin="0.5,0.5">
+            <Button.Projection>
+                <PlaneProjection RotationX="0" RotationY="0" RotationZ="0"/>
+            </Button.Projection>
+            <Button.RenderTransform>
+                <CompositeTransform Rotation="0" ScaleY="-1" ScaleX="-1"/>
+            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="ms-appx:///Assets/Plus-png.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <ScrollViewer Name="ScrollViewer" Margin="10,83,10,0">
+            <ListView x:ConnectionId='2' Name="ListView"
                       ItemsSource="{Binding News}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
@@ -34,7 +58,7 @@
                       [Event ItemClick] = 
                       [Action GoToDetail($clickeditem)];
                       [Event RightTapped] = 
-                      [Action DeleteItem($longtappeditem)]"
+                      [Action PrepareToDelete($longtappeditem)]"
                       ShowsScrollingPlaceholders="True"
                       ReorderMode="Disabled"
                       IsSynchronizedWithCurrentItem="False"
@@ -43,11 +67,17 @@
                                               
                                        
                                                         >
-                <ListView.Resources>
-                    <MenuFlyout x:Key="DeleteLine"/>
-                </ListView.Resources>
                 <FlyoutBase.AttachedFlyout>
-                    <StaticResource ResourceKey="DeleteLine"/>
+                    <Flyout x:Name="Flyout">
+                        <StackPanel Background="#FFE8BEE8">
+                            <Button x:ConnectionId='3' 
+                                micro:Message.Attach=
+                                "[Event Click] = 
+                                [Action DeleteItem()]"
+                                Content="Delete"                    
+                                Background="#FFE8BEE8"/>
+                        </StackPanel>
+                    </Flyout>
                 </FlyoutBase.AttachedFlyout>
                 <ListView.ItemTemplate>
                     <DataTemplate>

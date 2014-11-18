@@ -1,13 +1,13 @@
 ﻿namespace RssReader.Storage
 {
+    using Caliburn.Micro;
+
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
 
     using Windows.UI.Core;
     using Windows.UI.Xaml;
-
-    using Caliburn.Micro;
 
     public class RssHolder : INewsHolder
     {

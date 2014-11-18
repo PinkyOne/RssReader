@@ -167,3 +167,8 @@ C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\Add
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\AddPageView.xaml
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\AddPageView.xbf
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\AddPageView.xbf
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\ExceptionPageView.xbf
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\ExceptionPageView.g.i.cs
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\ExceptionPageView.g.cs
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\ExceptionPageView.xaml
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\ExceptionPageView.xbf
