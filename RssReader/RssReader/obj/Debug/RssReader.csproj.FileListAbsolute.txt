@@ -124,7 +124,6 @@ C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Caliburn.
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Caliburn.Micro.Logging.pdb
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Caliburn.Micro.Platform.xml
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Caliburn.Micro.Platform.pri
-C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\RssReader.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\App.g.i.cs
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\App.g.cs
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\DetailPageView.g.i.cs
@@ -172,3 +171,10 @@ C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\Exc
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\ExceptionPageView.g.cs
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\ExceptionPageView.xaml
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Views\ExceptionPageView.xbf
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyApp.dll
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyAppPCL.dll
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyApp.pdb
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyApp.pri
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyAppPCL.pdb
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyAppPCL.xml
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\HockeyApp.pri.xml

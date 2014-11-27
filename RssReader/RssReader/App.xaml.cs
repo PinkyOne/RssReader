@@ -14,6 +14,8 @@ namespace RssReader
 
     using Caliburn.Micro;
 
+    using HockeyApp;
+
     using RssReader.Storage;
     using RssReader.ViewModels;
     using RssReader.Views;
@@ -76,9 +78,11 @@ namespace RssReader
             this.container.BuildUp(instance);
         }
 
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
             DisplayRootView<MainPageView>();
+            HockeyClient.Current.Configure("41c0efbe685a736005dca035c8636a54");
+            await HockeyClient.Current.SendCrashesAsync();
         }
 
         protected override async void OnSuspending(object sender, SuspendingEventArgs e)

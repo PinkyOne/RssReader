@@ -74,7 +74,7 @@ namespace RssReader.ViewModels
 
         public new void Refresh()
         {
-                holder.Refresh(downloader, parser);
+            holder.Refresh(downloader, parser);
         }
 
         public void Handle(string message)
