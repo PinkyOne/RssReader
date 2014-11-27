@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
   <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="Parameter" />
     <RootPropertyPathName Name="Feed" />
     <RootPropertyPathName Name="PublicDate" />
     <RootPropertyPathName Name="Link" />
@@ -103,6 +104,7 @@
     <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
       <RootProperty Name="Height" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding" />
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="RssReader.Views.ExceptionPageView" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
@@ -120,7 +122,6 @@
       <RootEvent Name="Loaded" />
       <RootEvent Name="RightTapped" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Data.Binding" />
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
     </RootType>

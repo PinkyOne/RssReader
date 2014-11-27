@@ -18,7 +18,8 @@ namespace RssReader.Storage
             }
             catch (HttpRequestException e)
             {
-                throw;
+                client.CancelPendingRequests();
+                return null;
             }
         }
     }

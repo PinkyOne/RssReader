@@ -24,30 +24,41 @@ namespace RssReader.ViewModels
 
         private readonly IParser parser;
 
+        private readonly IEventAggregator eventAggregator;
+
         public AddPageViewModel(
             INavigationService navigationService,
             INewsHolder holder,
             IDownloader loader,
-            IParser parser)
+            IParser parser,
+            IEventAggregator eventAggregator)
         {
             this.parser = parser;
             this.holder = holder;
             this.loader = loader;
             this.navigationService = navigationService;
+            this.eventAggregator = eventAggregator;
+            this.eventAggregator.Subscribe(this);
         }
 
         public async void AddNewsLine(string url)
         {
-            navigationService.NavigateToViewModel<MainPageViewModel>();
             try
             {
+                navigationService.NavigateToViewModel<MainPageViewModel>();
                 string feed = await loader.DownloadAsync(url).ConfigureAwait(false);
-                var rssFeed = parser.ParseXml(url, feed);
-                holder.AddLine(rssFeed);
+                if (feed != null)
+                {
+                    var rssFeed = parser.ParseXml(url, feed);
+                    holder.AddLine(rssFeed);
+                    eventAggregator.Publish("All is ok", Execute.OnUIThread);
+                    return;
+                }
+                eventAggregator.Publish("Can not download rss.\nTry another address.", Execute.OnUIThread);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                navigationService.NavigateToViewModel<ExceptionPageViewModel>(e);
+                eventAggregator.Publish("Can not download rss.\nTry another address.", Execute.OnUIThread);
             }
         }
     }

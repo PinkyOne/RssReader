@@ -2,6 +2,8 @@
 
 namespace RssReader.Storage
 {
+    using Caliburn.Micro;
+
     using System;
     using System.Collections.ObjectModel;
     using System.IO;
@@ -55,10 +57,7 @@ namespace RssReader.Storage
             {
                 // Get the input stream for the SessionState file
                 StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("collection");
-
-               /* IInputStream inStream = null;
-                Execute.OnUIThread(async () => { inStream = await file.OpenSequentialReadAsync(); });*/
-                IInputStream inStream = await file.OpenSequentialReadAsync();
+                IInputStream inStream = file.OpenSequentialReadAsync().GetResults();
 
                 // Deserialize the Session State
                 DataContractSerializer serializer = new DataContractSerializer(typeof(RssFeed[]));

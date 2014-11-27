@@ -19,11 +19,11 @@ namespace RssReader.ViewModels
             this.navigationService = navigationService;
         }
 
-        public Exception Parameter { get; private set; }
-
+        public string Parameter { get; private set; }
+        
         public void ReturnToMainPage()
         {
-            navigationService.NavigateToViewModel<MainPageViewModel>();
+            Execute.OnUIThread(() => navigationService.NavigateToViewModel<MainPageViewModel>());
         }
     }
 }

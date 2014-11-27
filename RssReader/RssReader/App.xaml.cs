@@ -29,8 +29,6 @@ namespace RssReader
     {
         private WinRTContainer container;
 
-        private SimpleContainer childContainer;
-
         public App()
         {
             InitializeComponent();
@@ -41,8 +39,6 @@ namespace RssReader
             this.container = new WinRTContainer();
 
             this.container.RegisterWinRTServices();
-
-            childContainer = this.container.CreateChildContainer();
 
             this.container.Singleton<IDownloader, RssDownloader>();
             this.container.Singleton<IParser, RssXmlParser>();
@@ -57,6 +53,7 @@ namespace RssReader
             this.container.PerRequest<DetailPageViewModel>();
             this.container.PerRequest<MainPageViewModel>();
             this.container.PerRequest<AddPageViewModel>();
+            this.container.PerRequest<ExceptionPageViewModel>();
         }
 
         protected override void PrepareViewFirst(Frame rootFrame)
