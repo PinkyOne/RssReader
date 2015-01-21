@@ -46,7 +46,7 @@
             {
                 var feed = newsHeaders[i];
                 feed = parser.ParseXml(feed.Url, await loader.DownloadAsync(feed.Url));
-                newsHeaders[i] = feed;
+                Execute.OnUIThread(() => newsHeaders[i] = feed);
             }
         }
     }

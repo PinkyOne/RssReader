@@ -38,11 +38,21 @@ namespace RssReader.Storage
                 var nodes = from channelNode in channelXmlNode.Elements()
                             where channelNode.Name.LocalName == "item"
                             select channelNode;
-
-                var items =
-                    new ObservableCollection<RssItem>(from node in nodes let item = new RssItem(node) select item);
-
-                return new RssFeed(url, title, link, description, items);
+                var imageNode =
+                    (from channelNode in channelXmlNode.Elements()
+                     where channelNode.Name.LocalName == "image"
+                     select channelNode).First();
+                var imageUrl = imageNode.Element("url").Value;
+                try
+                {
+                    var items =
+                        new ObservableCollection<RssItem>(from node in nodes let item = new RssItem(node) select item);
+                    return new RssFeed(url, title, link, description, imageUrl, items);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Пустая последовательность");
+                }
             }
             throw new Exception("Ошибка в XML. Описание канала не найдено!");
         }

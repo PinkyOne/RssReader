@@ -5,6 +5,7 @@ namespace RssReader.ViewModels
 {
     using System.Collections.ObjectModel;
     using System.Net.Http;
+    using System.Threading;
 
     using Caliburn.Micro;
 
@@ -22,6 +23,10 @@ namespace RssReader.ViewModels
 
         private IEventAggregator eventAggregator;
 
+        private Timer timer;
+
+        private bool onMainThread;
+
         public MainPageViewModel(
             INavigationService navigationService,
             IDownloader downloader,
@@ -35,6 +40,8 @@ namespace RssReader.ViewModels
             this.holder = holder;
             this.eventAggregator = eventAggregator;
             this.eventAggregator.Subscribe(this);
+            TimerCallback timerCallback = this.Refresh;
+            timer = new Timer(timerCallback, null, 10000, 3000);
         }
 
         public ObservableCollection<RssFeed> News
@@ -80,6 +87,21 @@ namespace RssReader.ViewModels
         public void Handle(string message)
         {
             if (message != "All is ok") navigationService.NavigateToViewModel<ExceptionPageViewModel>(message);
+        }
+
+        protected override void OnActivate()
+        {
+            onMainThread = true;
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            onMainThread = false;
+        }
+
+        private void Refresh(object state)
+        {
+            if (onMainThread) this.Refresh();
         }
     }
 }

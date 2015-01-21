@@ -56,9 +56,9 @@ namespace RssReader.ViewModels
                 }
                 eventAggregator.Publish("Can not download rss.\nTry another address.", Execute.OnUIThread);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                eventAggregator.Publish("Can not download rss.\nTry another address.", Execute.OnUIThread);
+                eventAggregator.Publish(e.Message, Execute.OnUIThread);
             }
         }
     }

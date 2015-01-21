@@ -10,6 +10,7 @@ namespace RssReader.Storage
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Runtime.Serialization;
     using System.Xml.Linq;
 
@@ -18,22 +19,28 @@ namespace RssReader.Storage
     [DataContract]
     public class RssItem : PropertyChangedBase
     {
-        public RssItem(XElement rssItems)
+        public RssItem(XElement rssItem)
         {
             this.Title =
-                (from xmlElement in rssItems.Elements() where xmlElement.Name.LocalName == "title" select xmlElement)
+                (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "title" select xmlElement)
                     .First().Value;
             this.Description =
-                (from xmlElement in rssItems.Elements()
+                (from xmlElement in rssItem.Elements()
                  where xmlElement.Name.LocalName == "description"
                  select xmlElement).First().Value;
 
+            var s = WebUtility.HtmlDecode(Description);
+
             this.Link =
-                (from xmlElement in rssItems.Elements() where xmlElement.Name.LocalName == "link" select xmlElement)
+                (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "link" select xmlElement)
                     .First().Value;
 
             this.PublicDate =
-                (from xmlElement in rssItems.Elements() where xmlElement.Name.LocalName == "pubDate" select xmlElement)
+                (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "pubDate" select xmlElement)
+                    .First().Value;
+
+            this.ImageUrl =
+                (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "image" select xmlElement)
                     .First().Value;
 
             this.Opacity = 1.0;
@@ -58,6 +65,9 @@ namespace RssReader.Storage
 
         [DataMember]
         public string PublicDate { get; private set; }
+
+        [DataMember]
+        public string ImageUrl { get; private set; }
 
         [DataMember]
         public double Opacity { get; set; }

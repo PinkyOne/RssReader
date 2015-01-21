@@ -30,6 +30,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical" Name="StackPanel">
+                            <Image
+                                Source="{Binding ImageUrl}"
+                                HorizontalAlignment="Left" 
+                                Height="100" 
+                                VerticalAlignment="Top"
+                                Width="100"
+                                   />
                             <TextBlock Text="{Binding Title}" Margin="20,5,0,10" Opacity="{Binding Opacity}" Foreground="#FF0F0E0E" />
                             <TextBlock Text="{Binding Link}" Margin="5,0,5,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
                             <TextBlock Text="{Binding PublicDate}" FontSize="14" Margin="30,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
@@ -38,5 +45,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
-    </Grid>
+        </Grid>
 </Page>

@@ -30,7 +30,6 @@ namespace RssReader.Views
         public MainPageView()
         {
             this.InitializeComponent();
-            
         }
 
         /// <summary>

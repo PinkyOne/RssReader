@@ -500,9 +500,6 @@
       </violation>
     </violations>
   </sourcecode>
-  <project key="122922417">
-    <configuration>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</configuration>
-  </project>
   <sourcecode name="AssemblyInfo.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
@@ -645,7 +642,7 @@
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
       <settingsFile>2014.10.10 16:07:48.675</settingsFile>
-      <sourceFile>2014.11.14 16:51:33.007</sourceFile>
+      <sourceFile>2015.01.02 19:15:55.663</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -852,7 +849,7 @@
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
       <settingsFile>2014.10.10 16:07:48.675</settingsFile>
-      <sourceFile>2014.11.27 21:26:48.387</sourceFile>
+      <sourceFile>2015.01.21 13:42:41.625</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -875,7 +872,7 @@
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
       <settingsFile>2014.10.10 16:07:48.675</settingsFile>
-      <sourceFile>2014.11.27 21:23:14.077</sourceFile>
+      <sourceFile>2014.11.27 23:04:12.834</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -990,7 +987,7 @@
     <timestamps>
       <styleCop>2014.04.01 10:18:24.000</styleCop>
       <settingsFile>2014.10.10 16:07:48.675</settingsFile>
-      <sourceFile>2014.11.18 17:40:44.750</sourceFile>
+      <sourceFile>2015.01.21 13:42:08.855</sourceFile>
       <parser>2014.04.01 10:18:24.000</parser>
       <StyleCop.CSharp.DocumentationRules>2014.04.01 10:18:24.000</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>1157575881</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -1009,4 +1006,7 @@
     </timestamps>
     <violations />
   </sourcecode>
+  <project key="122922417">
+    <configuration>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</configuration>
+  </project>
 </stylecopresultscache>

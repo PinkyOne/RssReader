@@ -178,3 +178,4 @@ C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyApp
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyAppPCL.pdb
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HockeyAppPCL.xml
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\HockeyApp.pri.xml
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\RssReader.csprojResolveAssemblyReference.cache

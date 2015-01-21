@@ -17,7 +17,13 @@ namespace RssReader.Storage
     [DataContract]
     public class RssFeed
     {
-        public RssFeed(string url, string title, string link, string description, ObservableCollection<RssItem> items)
+        public RssFeed(
+            string url,
+            string title,
+            string link,
+            string description,
+            string imageUrl,
+            ObservableCollection<RssItem> items)
         {
             this.Url = url;
             this.Title = title;
@@ -25,6 +31,7 @@ namespace RssReader.Storage
             this.Description = description;
             this.Items = items;
             this.CountUnviewedItems = items.Count;
+            this.ImageUrl = imageUrl;
         }
 
         [DataMember]
@@ -44,6 +51,9 @@ namespace RssReader.Storage
 
         [DataMember]
         public int CountUnviewedItems { get; set; }
+
+        [DataMember]
+        public string ImageUrl { get; private set; }
 
         public bool OnDelete { get; set; }
     }

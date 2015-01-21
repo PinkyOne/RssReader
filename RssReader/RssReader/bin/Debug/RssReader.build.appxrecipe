@@ -46,23 +46,29 @@
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\packages\Caliburn.Micro.2.0.1\lib\wpa81\Microsoft.Xaml.Interactivity.dll">
       <PackagePath>Microsoft.Xaml.Interactivity.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\SplashScreen.scale-240.png">
+      <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\iconrefresh.png">
       <PackagePath>Assets\iconrefresh.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\1Logo.scale-240.png">
+      <PackagePath>Assets\1Logo.scale-240.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\Plus-png.png">
+      <PackagePath>Assets\Plus-png.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\Logo.scale-240.png">
       <PackagePath>Assets\Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\Plus-png.png">
-      <PackagePath>Assets\Plus-png.png</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\SmallLogo.scale-240.png">
       <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\SplashScreen.scale-240.png">
-      <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
-      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\1SplashScreen.scale-240.png">
+      <PackagePath>Assets\1SplashScreen.scale-240.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\Square71x71Logo.scale-240.png">
       <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
