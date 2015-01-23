@@ -38,11 +38,16 @@ namespace RssReader.Storage
             this.PublicDate =
                 (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "pubDate" select xmlElement)
                     .First().Value;
-
-            this.ImageUrl =
-                (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "image" select xmlElement)
-                    .First().Value;
-
+            try
+            {
+                var url =
+                    (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "image" select xmlElement)
+                        .FirstOrDefault().Value;
+                this.ImageUrl = url as string;
+            }
+            catch
+            {
+            }
             this.Opacity = 1.0;
         }
 

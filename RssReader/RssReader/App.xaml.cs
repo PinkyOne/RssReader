@@ -45,6 +45,7 @@ namespace RssReader
             this.container.Singleton<IDownloader, RssDownloader>();
             this.container.Singleton<IParser, RssXmlParser>();
             this.container.Singleton<INewsHolder, RssHolder>();
+            this.container.Singleton<IHtmlToBlocksConverter, HtmlToBlocksConverter>();
 
             MessageBinder.SpecialValues.Add("$clickeditem", c => ((ItemClickEventArgs)c.EventArgs).ClickedItem);
             MessageBinder.SpecialValues.Add(

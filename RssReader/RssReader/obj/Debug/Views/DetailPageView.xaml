@@ -5,11 +5,12 @@
     xmlns:local="using:RssReader.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:micro="using:Caliburn.Micro"
     mc:Ignorable="d"
     Background="#FFE8BEE8">
 
     <Grid>
-        
+
         <ScrollViewer 
                 IsScrollInertiaEnabled="True"
                 IsDeferredScrollingEnabled="True"
@@ -22,7 +23,15 @@
             <StackPanel>
                 <TextBlock x:Name="PubDate" Margin="30,0,30,10" FontSize="10" Foreground="DarkGray" Style="{StaticResource SubheaderTextBlockStyle}" FontFamily="Snap ITC" SelectionHighlightColor="{x:Null}" />
                 <TextBlock x:Name="Title" Margin="10,10,10,0" FontSize="20" Foreground="Black" TextWrapping="WrapWholeWords" Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock x:Name="Feed" Margin="5,20,0,0" Foreground="Black" TextWrapping="WrapWholeWords" FontSize="14"></TextBlock>
+                <RichTextBlock Name="RichTextBlock"
+                    micro:Message.Attach="
+                    [Event Loaded] = 
+                    [Action Feed(RichTextBlock.Blocks)]"
+                    >
+                    <RichTextBlock.OverflowContentTarget>
+                        <RichTextBlockOverflow/>
+                    </RichTextBlock.OverflowContentTarget>
+                </RichTextBlock>
             </StackPanel>
         </ScrollViewer>
     </Grid>
