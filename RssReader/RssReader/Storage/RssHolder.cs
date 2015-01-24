@@ -4,6 +4,8 @@
     using System.Collections.ObjectModel;
     using System.Linq;
 
+    using Windows.UI.Xaml.Controls;
+
     using Caliburn.Micro;
 
     using Windows.UI.Core;
@@ -42,11 +44,23 @@
 
         public async void Refresh(IDownloader loader, IParser parser)
         {
-            for (var i = 0; i < newsHeaders.Count; i++)
+            foreach (RssFeed newsFeed in newsHeaders)
             {
-                var feed = newsHeaders[i];
-                feed = parser.ParseXml(feed.Url, await loader.DownloadAsync(feed.Url));
-                Execute.OnUIThread(() => newsHeaders[i] = feed);
+                var url = newsFeed.Url;
+                var feed = parser.ParseXml(url, await loader.DownloadAsync(url));
+                var newItems = from item in feed.Items
+                               join oldItem in newsFeed.Items on item.Title equals oldItem.Title into
+                                   coincidingItems
+                               from consItem in coincidingItems.DefaultIfEmpty()
+                               select consItem;
+                Execute.OnUIThread(
+                    () =>
+                        {
+                            foreach (var item in newItems)
+                            {
+                                newsFeed.Items.Add(item);
+                            }
+                        });
             }
         }
     }
