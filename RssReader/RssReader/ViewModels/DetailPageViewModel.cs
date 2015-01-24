@@ -6,14 +6,10 @@
 //   View model of page
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RssReader.ViewModels
 {
     using System.Collections.Generic;
     using System.Linq;
-
-    using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Documents;
 
     using Caliburn.Micro;
 
@@ -21,9 +17,12 @@ namespace RssReader.ViewModels
 
     using RssReader.Storage;
 
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Documents;
+
     public class DetailPageViewModel : Screen
     {
-        private IHtmlToBlocksConverter converter;
+        private readonly IHtmlToBlocksConverter converter;
 
         public DetailPageViewModel(IHtmlToBlocksConverter converter)
         {
@@ -50,26 +49,18 @@ namespace RssReader.ViewModels
 
         public void Feed(object sender)
         {
-            
-                var blocks = sender as BlockCollection;
-                var newBlocks = this.converter.GenerateBlocksForHtml(this.Parameter.Description);
+            var blocks = sender as BlockCollection;
+            var newBlocks = this.converter.GenerateBlocksForHtml(this.Parameter.Description);
 
-                // Add the blocks to the RichTextBlock
+            // Add the blocks to the RichTextBlock
+            if (blocks != null)
+            {
                 blocks.Clear();
                 foreach (var b in newBlocks)
                 {
                     blocks.Add(b);
                 }
-            
-            /*  get
-            {
-                var htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(this.Parameter.Description);
-                var er = htmlDoc.ParseErrors.Count();
-                var rr = htmlDoc.DocumentNode.InnerHtml;
-                
-                return htmlDoc.DocumentNode.InnerText;
-            }*/
+            }
         }
     }
 }

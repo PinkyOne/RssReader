@@ -28,10 +28,10 @@ namespace RssReader.ViewModels
         private bool onMainThread;
 
         public MainPageViewModel(
-            INavigationService navigationService,
-            IDownloader downloader,
-            IParser parser,
-            INewsHolder holder,
+            INavigationService navigationService, 
+            IDownloader downloader, 
+            IParser parser, 
+            INewsHolder holder, 
             IEventAggregator eventAggregator)
         {
             this.navigationService = navigationService;
@@ -41,7 +41,7 @@ namespace RssReader.ViewModels
             this.eventAggregator = eventAggregator;
             this.eventAggregator.Subscribe(this);
             TimerCallback timerCallback = this.Refresh;
-            timer = new Timer(timerCallback, null, 10000, 3000);
+            timer = new Timer(timerCallback, null, 100000, 3000);
         }
 
         public ObservableCollection<RssFeed> News

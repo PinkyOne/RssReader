@@ -27,10 +27,10 @@ namespace RssReader.ViewModels
         private readonly IEventAggregator eventAggregator;
 
         public AddPageViewModel(
-            INavigationService navigationService,
-            INewsHolder holder,
-            IDownloader loader,
-            IParser parser,
+            INavigationService navigationService, 
+            INewsHolder holder, 
+            IDownloader loader, 
+            IParser parser, 
             IEventAggregator eventAggregator)
         {
             this.parser = parser;
@@ -46,7 +46,7 @@ namespace RssReader.ViewModels
             try
             {
                 navigationService.NavigateToViewModel<MainPageViewModel>();
-                string feed = await loader.DownloadAsync(url).ConfigureAwait(false);
+                var feed = await loader.DownloadAsync(url).ConfigureAwait(false);
                 if (feed != null)
                 {
                     var rssFeed = parser.ParseXml(url, feed);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -49,14 +50,14 @@ namespace RssReader.Views
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             this.ScrollViewer.ChangeView(
-                this.ScrollViewer.HorizontalOffset,
-                verticalOffset,
+                this.ScrollViewer.HorizontalOffset, 
+                verticalOffset, 
                 this.ScrollViewer.ZoomFactor);
         }
 
         private void ListViewRightTapped1(object sender, RightTappedRoutedEventArgs e)
         {
-            ListView listView = sender as ListView;
+            var listView = sender as ListView;
             if (listView != null)
             {
                 Flyout.ShowAttachedFlyout(listView);

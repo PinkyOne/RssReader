@@ -107,13 +107,18 @@
     <Compile Include="Views\AddPageView.xaml.cs">
       <DependentUpon>AddPageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DetailPageView.xaml.cs" />
+    <Compile Include="Views\DetailPageView.xaml.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Views\ExceptionPageView.xaml.cs">
       <DependentUpon>ExceptionPageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ItemPageView.xaml.cs" />
+    <Compile Include="Views\ItemPageView.xaml.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Views\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +148,7 @@
     <Page Include="Views\AddPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Page>
     <Page Include="Views\DetailPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +158,7 @@
     <Page Include="Views\ExceptionPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Page>
     <Page Include="Views\ItemPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +168,7 @@
     <Page Include="Views\MainPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Page>
   </ItemGroup>
   <ItemGroup>

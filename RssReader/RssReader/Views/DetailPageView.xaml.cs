@@ -3,10 +3,8 @@
 //   Saved
 // </copyright>
 // <summary>
-//   
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RssReader.Views
 {
     using Windows.UI.Xaml.Controls;

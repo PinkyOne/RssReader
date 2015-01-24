@@ -3,10 +3,8 @@
 //   saved
 // </copyright>
 // <summary>
-//   
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RssReader
 {
     using System;
@@ -22,7 +20,6 @@ namespace RssReader
 
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
-
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Input;
@@ -49,7 +46,7 @@ namespace RssReader
 
             MessageBinder.SpecialValues.Add("$clickeditem", c => ((ItemClickEventArgs)c.EventArgs).ClickedItem);
             MessageBinder.SpecialValues.Add(
-                "$longtappeditem",
+                "$longtappeditem", 
                 c => ((TextBlock)((RightTappedRoutedEventArgs)c.EventArgs).OriginalSource).DataContext);
 
             this.container.PerRequest<ItemPageViewModel>();

@@ -33,9 +33,9 @@
                             <Image
                                 Source="{Binding ImageUrl}"
                                 HorizontalAlignment="Left" 
-                                Height="100" 
+                                Height="50" 
                                 VerticalAlignment="Top"
-                                Width="100"
+                                Width="50"
                                    />
                             <TextBlock Text="{Binding Title}" Margin="20,5,0,10" Opacity="{Binding Opacity}" Foreground="#FF0F0E0E" />
                             <TextBlock Text="{Binding Link}" Margin="5,0,5,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />

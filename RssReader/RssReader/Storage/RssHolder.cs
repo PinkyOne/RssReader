@@ -1,10 +1,10 @@
 ﻿namespace RssReader.Storage
 {
-    using Caliburn.Micro;
-
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
+
+    using Caliburn.Micro;
 
     using Windows.UI.Core;
     using Windows.UI.Xaml;
@@ -42,7 +42,7 @@
 
         public async void Refresh(IDownloader loader, IParser parser)
         {
-            for (int i = 0; i < newsHeaders.Count; i++)
+            for (var i = 0; i < newsHeaders.Count; i++)
             {
                 var feed = newsHeaders[i];
                 feed = parser.ParseXml(feed.Url, await loader.DownloadAsync(feed.Url));

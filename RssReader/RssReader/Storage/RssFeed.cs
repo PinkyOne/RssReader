@@ -18,11 +18,11 @@ namespace RssReader.Storage
     public class RssFeed
     {
         public RssFeed(
-            string url,
-            string title,
-            string link,
-            string description,
-            string imageUrl,
+            string url, 
+            string title, 
+            string link, 
+            string description, 
+            string imageUrl, 
             ObservableCollection<RssItem> items)
         {
             this.Url = url;

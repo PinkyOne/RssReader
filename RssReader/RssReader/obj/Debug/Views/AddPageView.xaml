@@ -12,8 +12,13 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Add page" TextAlignment="Center"  FontSize="40" VerticalAlignment="Top" Width="395" Margin="5,0,0,0" Height="51"/>
         <TextBox x:ConnectionId='1' x:Name="urlTextBox" Margin="32,72,32,0" TextWrapping="Wrap" Text="Input rss url there" VerticalAlignment="Top" Height="43"                      />
-        <Button Content="Add news line" HorizontalAlignment="Left" Margin="87,126,0,0" VerticalAlignment="Top" Width="225"
-                micro:Message.Attach="[Event Click] = [Action AddNewsLine(urlTextBox.Text)]"/>
+        <Button Content="Add news line"
+                HorizontalAlignment="Left"
+                Margin="87,126,0,0" 
+                VerticalAlignment="Top"
+                Width="225"
+                micro:Message.Attach="[Event Click] = 
+                [Action AddNewsLine(urlTextBox.Text)]"/>
 
     </Grid>
 </Page>
