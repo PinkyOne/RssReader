@@ -1,6 +1,4 @@
-﻿
-
-namespace RssReader.Storage
+﻿namespace RssReader.Storage
 {
     using System;
     using System.Collections.Generic;

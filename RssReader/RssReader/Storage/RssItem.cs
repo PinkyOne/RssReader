@@ -81,5 +81,11 @@ namespace RssReader.Storage
         {
             return this.Title + Environment.NewLine + this.Description + Environment.NewLine + this.PublicDate;
         }
+
+        public override bool Equals(object obj)
+        {
+            var anotherItem = obj as RssItem;
+            return anotherItem != null && (this.Title.Equals(anotherItem.Title) && this.PublicDate.Equals(anotherItem.PublicDate));
+        }
     }
 }

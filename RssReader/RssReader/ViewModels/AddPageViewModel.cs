@@ -8,6 +8,8 @@ namespace RssReader.ViewModels
 {
     using System.Runtime.InteropServices;
 
+    using Windows.Web.Syndication;
+
     using Caliburn.Micro;
 
     using RssReader.Storage;
@@ -46,7 +48,7 @@ namespace RssReader.ViewModels
             try
             {
                 navigationService.NavigateToViewModel<MainPageViewModel>();
-                var feed = await loader.DownloadAsync(url).ConfigureAwait(false);
+                var feed = (await loader.DownloadAsync(url)).GetXmlDocument(SyndicationFormat.Rss20).GetXml();
                 if (feed != null)
                 {
                     var rssFeed = parser.ParseXml(url, feed);

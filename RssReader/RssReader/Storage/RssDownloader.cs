@@ -1,24 +1,30 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace RssReader.Storage
 {
     using System;
-    using System.Collections.ObjectModel;
     using System.Net.Http;
+
+    using Windows.Foundation;
+    using Windows.Web.Syndication;
 
     public class RssDownloader : IDownloader
     {
-        public async Task<string> DownloadAsync(string url)
+        public IAsyncOperationWithProgress<SyndicationFeed, RetrievalProgress> DownloadAsync(string url)
         {
-            var client = new HttpClient();
+            // var client = new HttpClient();
             try
             {
-                return await client.GetStringAsync(url).ConfigureAwait(false);
+                var client = new SyndicationClient();
+                var feed = client.RetrieveFeedAsync(new Uri(url));
+                return feed;
+
+                // var httpResponse = client.GetStringAsync(url).ConfigureAwait(false);
+                // Progress<Task<string>> progressCallback=new Progress<Task<string>>();
+                // return await httpResponse;
             }
             catch (HttpRequestException e)
             {
-                client.CancelPendingRequests();
                 return null;
             }
         }

@@ -2,8 +2,11 @@
 {
     using System.Threading.Tasks;
 
+    using Windows.Foundation;
+    using Windows.Web.Syndication;
+
     public interface IDownloader
     {
-        Task<string> DownloadAsync(string url);
+        IAsyncOperationWithProgress<SyndicationFeed, RetrievalProgress> DownloadAsync(string url);
     }
 }

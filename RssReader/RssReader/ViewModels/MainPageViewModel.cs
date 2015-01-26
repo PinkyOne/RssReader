@@ -28,10 +28,10 @@ namespace RssReader.ViewModels
         private bool onMainThread;
 
         public MainPageViewModel(
-            INavigationService navigationService, 
-            IDownloader downloader, 
-            IParser parser, 
-            INewsHolder holder, 
+            INavigationService navigationService,
+            IDownloader downloader,
+            IParser parser,
+            INewsHolder holder,
             IEventAggregator eventAggregator)
         {
             this.navigationService = navigationService;
@@ -101,7 +101,7 @@ namespace RssReader.ViewModels
 
         private void Refresh(object state)
         {
-            if (onMainThread) this.Refresh();
+            this.Refresh();
         }
     }
 }

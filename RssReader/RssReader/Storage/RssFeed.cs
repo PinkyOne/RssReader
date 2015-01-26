@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace RssReader.Storage
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Runtime.Serialization;
@@ -56,5 +57,12 @@ namespace RssReader.Storage
         public string ImageUrl { get; private set; }
 
         public bool OnDelete { get; set; }
+
+        public void AddRange(IEnumerable<RssItem> newItems)
+        {
+            var oldItems = this.Items.ToList();
+            oldItems.AddRange(newItems);
+            this.Items = new ObservableCollection<RssItem>(oldItems);
+        }
     }
 }
