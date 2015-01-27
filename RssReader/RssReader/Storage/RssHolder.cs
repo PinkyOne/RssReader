@@ -29,6 +29,8 @@
             }
         }
 
+        public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
+
         public ObservableCollection<RssFeed> GetNewsLines()
         {
             return newsHeaders;
@@ -50,31 +52,40 @@
             {
                 var url = newsFeed.Url;
                 var feedLoad = loader.DownloadAsync(url);
-                while (feedLoad.Status != AsyncStatus.Completed)
-                {
-                    var pr = feedLoad.Progress;
-                }
-                var feed = parser.ParseXml(url, (await feedLoad).GetXmlDocument(SyndicationFormat.Rss20).GetXml());
-                var newItems = from oldItem in newsFeed.Items
-                               join item in feed.Items on oldItem equals item
-                               where !item.Equals(oldItem)
-                               select item;
-                var rssItems = newItems as IList<RssItem> ?? newItems.ToList();
-                newsFeed.AddRange(rssItems);
+
+                feedLoad.GetAwaiter().UnsafeOnCompleted(
+                    () =>
+                        {
+                            try
+                            {
+                                var feed = parser.ParseXml(
+                                    url,
+                                    feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
+                                var newItems = from oldItem in newsFeed.Items
+                                               join item in feed.Items on oldItem equals item
+                                               where !item.Equals(oldItem)
+                                               select item;
+                                var rssItems = newItems as IList<RssItem> ?? newItems.ToList();
+                                newsFeed.AddRange(rssItems);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        });
             }
         }
 
-        public void Execute(ActionExecutionContext context)
+        public void Execute(CoroutineExecutionContext context)
         {
-            var worker = new System.ComponentModel.BackgroundWorker();
+            // var worker = new System.ComponentModel.BackgroundWorker.BackgroundWorker();
+
+            /* var worker = new System.ComponentModel.BackgroundWorker();
             using (var backgroundWorker = new System.ComponentModel BackgroundWorker())
             {
                 backgroundWorker.DoWork += (e, sender) => action();
                 backgroundWorker.RunWorkerCompleted += (e, sender) => Completed(this, new ResultCompletionEventArgs());
                 backgroundWorker.RunWorkerAsync();
-            }
+            }*/
         }
-
-        public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
     }
 }

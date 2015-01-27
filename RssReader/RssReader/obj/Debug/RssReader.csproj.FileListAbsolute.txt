@@ -181,3 +181,4 @@ C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\HockeyApp
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\RssReader.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HtmlAgilityPack.dll
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Assets\placeholde.png

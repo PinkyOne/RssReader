@@ -38,15 +38,17 @@ namespace RssReader.Storage
             this.PublicDate =
                 (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "pubDate" select xmlElement)
                     .First().Value;
+            string url = null;
             try
             {
-                var url =
+                url =
                     (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "image" select xmlElement)
                         .FirstOrDefault().Value;
-                this.ImageUrl = url as string;
             }
-            catch
+            catch (Exception e)
             {
+                this.ImageUrl = url
+                                ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
             }
             this.Opacity = 1.0;
         }

@@ -32,7 +32,8 @@ namespace RssReader.Storage
             this.Description = description;
             this.Items = items;
             this.CountUnviewedItems = items.Count;
-            this.ImageUrl = imageUrl;
+            this.ImageUrl = imageUrl
+                            ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
         }
 
         [DataMember]

@@ -127,6 +127,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\placeholde.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\SplashScreen.scale-240.png" />
     <Content Include="Assets\iconrefresh.png" />
     <Content Include="Assets\1Logo.scale-240.png" />

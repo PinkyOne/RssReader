@@ -49,6 +49,9 @@
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\packages\Caliburn.Micro.2.0.1\lib\wpa81\Microsoft.Xaml.Interactivity.dll">
       <PackagePath>Microsoft.Xaml.Interactivity.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png">
+      <PackagePath>Assets\placeholde.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\SplashScreen.scale-240.png">
       <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>

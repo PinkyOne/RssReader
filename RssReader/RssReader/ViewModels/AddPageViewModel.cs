@@ -29,10 +29,10 @@ namespace RssReader.ViewModels
         private readonly IEventAggregator eventAggregator;
 
         public AddPageViewModel(
-            INavigationService navigationService, 
-            INewsHolder holder, 
-            IDownloader loader, 
-            IParser parser, 
+            INavigationService navigationService,
+            INewsHolder holder,
+            IDownloader loader,
+            IParser parser,
             IEventAggregator eventAggregator)
         {
             this.parser = parser;
@@ -42,6 +42,8 @@ namespace RssReader.ViewModels
             this.eventAggregator = eventAggregator;
             this.eventAggregator.Subscribe(this);
         }
+
+        public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
 
         public async void AddNewsLine(string url)
         {
