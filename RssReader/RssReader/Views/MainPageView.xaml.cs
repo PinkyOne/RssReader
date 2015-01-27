@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Navigation;
 
 namespace RssReader.Views
 {
+    using Windows.UI.Xaml.Media.Imaging;
+
     using Caliburn.Micro;
 
     using RssReader.Storage;
@@ -79,6 +81,15 @@ namespace RssReader.Views
             if (flyout != null)
             {
                 flyout.Hide();
+            }
+        }
+
+        private void ImageImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var image = sender as Image;
+            if (image != null)
+            {
+                image.Source = new BitmapImage(new Uri("ms-appx:///Assets/placeholde.png"));
             }
         }
     }

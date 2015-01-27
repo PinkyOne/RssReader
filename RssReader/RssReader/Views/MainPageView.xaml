@@ -82,7 +82,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
-                            <Image Source="{Binding ImageUrl}" Stretch="None"></Image>
+                            <Image 
+                                MaxHeight="50"
+                                MaxWidth="80"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Source="{Binding ImageUrl}"
+                                Stretch="Uniform" ImageFailed="ImageImageFailed"></Image>
                             <TextBlock Text="{Binding Title}" Margin="20,5,0,10" Foreground="Black" Style="{StaticResource BodyTextBlockStyle}" />
                             <TextBlock Text="{Binding CountUnviewedItems}" Margin="350,0,0,0"></TextBlock>
                             <TextBlock Text="{Binding Link}" Margin="5,0,5,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
