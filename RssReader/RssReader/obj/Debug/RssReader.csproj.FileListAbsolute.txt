@@ -182,3 +182,8 @@ C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\RssReader
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HtmlAgilityPack.dll
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Assets\placeholde.png
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Controls\AnimationImage.xbf
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Controls\AnimationImage.g.i.cs
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Controls\AnimationImage.g.cs
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Controls\AnimationImage.xaml
+C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\obj\Debug\Controls\AnimationImage.xbf

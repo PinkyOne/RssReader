@@ -91,6 +91,7 @@ namespace RssReader.Views
             {
                 image.Source = new BitmapImage(new Uri("ms-appx:///Assets/placeholde.png"));
             }
+            this.InvalidateArrange();
         }
     }
 }

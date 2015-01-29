@@ -12,16 +12,11 @@ namespace RssReader.Storage
     {
         public IAsyncOperationWithProgress<SyndicationFeed, RetrievalProgress> DownloadAsync(string url)
         {
-            // var client = new HttpClient();
             try
             {
                 var client = new SyndicationClient();
                 var feed = client.RetrieveFeedAsync(new Uri(url));
                 return feed;
-
-                // var httpResponse = client.GetStringAsync(url).ConfigureAwait(false);
-                // Progress<Task<string>> progressCallback=new Progress<Task<string>>();
-                // return await httpResponse;
             }
             catch (HttpRequestException e)
             {

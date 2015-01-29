@@ -1,6 +1,7 @@
 Assets\1Logo.scale-240.png
 Assets\1SplashScreen.scale-240.png
 Assets\iconrefresh.png
+Assets\loading.gif
 Assets\Logo.scale-240.png
 Assets\placeholde.png
 Assets\plus.bmp
@@ -11,6 +12,7 @@ Assets\Square71x71Logo.scale-240.png
 Assets\StoreLogo.scale-240.png
 Assets\WideLogo.scale-240.png
 App.xbf
+Controls\AnimationImage.xbf
 RssReader.xr.xml
 Views\AddPageView.xbf
 Views\DetailPageView.xbf

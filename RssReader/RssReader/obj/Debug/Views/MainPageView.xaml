@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:micro="using:Caliburn.Micro"
+    xmlns:storage="using:RssReader.Storage"
+    xmlns:Controls="using:RssReader.Controls"
     mc:Ignorable="d"
     Background="#FFE8BEE8">
 
@@ -51,6 +53,7 @@
         </Button>
         <ScrollViewer Name="ScrollViewer" Margin="10,83,10,0">
             <ListView x:ConnectionId='2' Name="ListView"
+                      
                       ItemsSource="{Binding News}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
@@ -82,13 +85,19 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
+                            <Controls:AnimationImage ImageUrl="/Assets/loading.gif" Width="300" Height="300"></Controls:AnimationImage>
                             <Image x:ConnectionId='4' 
-                                MaxHeight="50"
-                                MaxWidth="80"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Source="{Binding ImageUrl}"
-                                Stretch="Uniform"                               ></Image>
+                                MaxHeight="80"
+                                MaxWidth="50"
+                                Stretch="Uniform"                               >
+                               <Image.Source>
+                                    <BitmapImage 
+                                        UriSource="{Binding ImageUrl}"
+                                        DecodePixelWidth="300" DecodePixelHeight="200"/>
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Title}" Margin="20,5,0,10" Foreground="Black" Style="{StaticResource BodyTextBlockStyle}" />
                             <TextBlock Text="{Binding CountUnviewedItems}" Margin="350,0,0,0"></TextBlock>
                             <TextBlock Text="{Binding Link}" Margin="5,0,5,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />

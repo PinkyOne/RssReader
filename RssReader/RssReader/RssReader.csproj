@@ -92,6 +92,9 @@
     <Compile Include="Storage\IHtmlToBlocksConverter.cs" />
     <Compile Include="Storage\INewsHolder.cs" />
     <Compile Include="Storage\IParser.cs" />
+    <Compile Include="Controls\AnimationImage.xaml.cs">
+      <DependentUpon>AnimationImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Storage\RssDownloader.cs" />
     <Compile Include="Storage\RssHolder.cs" />
     <Compile Include="Storage\RssXmlParser.cs" />
@@ -127,6 +130,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\loading.gif" />
     <Content Include="Assets\placeholde.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -148,6 +152,10 @@
       <SubType>Designer</SubType>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </ApplicationDefinition>
+    <Page Include="Controls\AnimationImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

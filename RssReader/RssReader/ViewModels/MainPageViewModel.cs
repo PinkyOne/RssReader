@@ -8,12 +8,12 @@ namespace RssReader.ViewModels
     using System.Threading;
     using System.Threading.Tasks;
 
-    using Windows.ApplicationModel.Background;
-    using Windows.System.Threading;
-
     using Caliburn.Micro;
 
     using RssReader.Storage;
+
+    using Windows.ApplicationModel.Background;
+    using Windows.System.Threading;
 
     public class MainPageViewModel : Screen, IHandle<string>
     {
@@ -26,11 +26,7 @@ namespace RssReader.ViewModels
         private readonly INewsHolder holder;
 
         private IEventAggregator eventAggregator;
-
-        private Timer timer;
-
-        private bool isRefreshing = false;
-
+        
         public MainPageViewModel(
             INavigationService navigationService,
             IDownloader downloader,
@@ -44,8 +40,6 @@ namespace RssReader.ViewModels
             this.holder = holder;
             this.eventAggregator = eventAggregator;
             this.eventAggregator.Subscribe(this);
-            TimerCallback timerCallback = this.Refresh;
-            this.timer = new Timer(timerCallback, null, 100000, 3000);
         }
 
         public ObservableCollection<RssFeed> News
@@ -85,24 +79,17 @@ namespace RssReader.ViewModels
 
         public new void Refresh()
         {
-            if (!isRefreshing)
+            if (!holder.IsBusy())
             {
-                isRefreshing = true;
                 var task = new Task(() => holder.Refresh(downloader, parser));
                 task.ConfigureAwait(false);
                 task.Start();
-                task.ContinueWith((continutation) => { isRefreshing = false; });
             }
         }
 
         public void Handle(string message)
         {
             if (message != "All is ok") navigationService.NavigateToViewModel<ExceptionPageViewModel>(message);
-        }
-        
-        private void Refresh(object state)
-        {
-            this.Refresh();
         }
     }
 }

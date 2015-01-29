@@ -49,6 +49,9 @@
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\packages\Caliburn.Micro.2.0.1\lib\wpa81\Microsoft.Xaml.Interactivity.dll">
       <PackagePath>Microsoft.Xaml.Interactivity.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\loading.gif">
+      <PackagePath>Assets\loading.gif</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png">
       <PackagePath>Assets\placeholde.png</PackagePath>
     </AppxPackagedFile>
@@ -93,6 +96,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Controls\AnimationImage.xbf">
+      <PackagePath>Controls\AnimationImage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\bin\Debug\Views\AddPageView.xbf">
       <PackagePath>Views\AddPageView.xbf</PackagePath>

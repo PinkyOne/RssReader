@@ -177,8 +177,8 @@
             img.VerticalAlignment = VerticalAlignment.Top;
             img.HorizontalAlignment = HorizontalAlignment.Left;
             img.ImageOpened += ImgImageOpened;
-            img.Width = 100;
-            img.Height = 70;
+            img.MaxWidth = 300;
+            img.MaxHeight = 200;
             iui.Child = img;
             s.Inlines.Add(iui);
             s.Inlines.Add(new LineBreak());

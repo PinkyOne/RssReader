@@ -4,23 +4,37 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.Linq;
-
-    using Windows.Foundation;
-    using Windows.Storage;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     using Caliburn.Micro;
 
+    using Windows.Foundation;
+    using Windows.Storage;
     using Windows.Web.Syndication;
 
-    public class RssHolder : INewsHolder, IResult
+    public class RssHolder : INewsHolder
     {
         private static ObservableCollection<RssFeed> newsHeaders = new ObservableCollection<RssFeed>();
+        
+        private bool isBusy = false;
 
-        public RssHolder()
+        private Timer timer;
+
+        private IParser parser;
+
+        private IDownloader loader;
+
+        public RssHolder(IDownloader loader, IParser parser)
         {
             try
             {
+                this.parser = parser;
+                this.loader = loader;
+                TimerCallback callback = this.RefreshOnTime;
+                this.timer = new Timer(callback, null, 10000, 3000);
                 newsHeaders = new ObservableCollection<RssFeed>(SuspensionManager.RestoreAsync().Result);
             }
             catch (Exception)
@@ -29,7 +43,10 @@
             }
         }
 
-        public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
+        public bool IsBusy()
+        {
+            return isBusy;
+        }
 
         public ObservableCollection<RssFeed> GetNewsLines()
         {
@@ -38,7 +55,13 @@
 
         public void AddLine(RssFeed feed)
         {
-            Caliburn.Micro.Execute.OnUIThread(() => newsHeaders.Add(feed));
+            isBusy = true;
+            Execute.OnUIThread(
+                () =>
+                    {
+                        newsHeaders.Add(feed);
+                        isBusy = false;
+                    });
         }
 
         public void RemoveLine(RssFeed feed)
@@ -48,44 +71,56 @@
 
         public async void Refresh(IDownloader loader, IParser parser)
         {
-            foreach (var newsFeed in newsHeaders)
+            if (!isBusy) 
             {
-                var url = newsFeed.Url;
-                var feedLoad = loader.DownloadAsync(url);
+                isBusy = true;
+                foreach (var newsFeed in newsHeaders)
+                {
+                    var url = newsFeed.Url;
+                    var feedLoad = loader.DownloadAsync(url);
 
-                feedLoad.GetAwaiter().UnsafeOnCompleted(
-                    () =>
-                        {
-                            try
+                    feedLoad.Progress =
+                        (info, progress) =>
+                        Debug.WriteLine(
+                            "{0}/{1} bytes {2:P}",
+                            progress.BytesRetrieved,
+                            progress.TotalBytesToRetrieve,
+                            (float)progress.BytesRetrieved / (float)progress.TotalBytesToRetrieve);
+
+                    feedLoad.GetAwaiter().UnsafeOnCompleted(
+                        () =>
                             {
-                                var feed = parser.ParseXml(
-                                    url,
-                                    feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
-                                var newItems = from oldItem in newsFeed.Items
-                                               join item in feed.Items on oldItem equals item
-                                               where !item.Equals(oldItem)
-                                               select item;
-                                var rssItems = newItems as IList<RssItem> ?? newItems.ToList();
-                                newsFeed.AddRange(rssItems);
-                            }
-                            catch (Exception)
-                            {
-                            }
-                        });
+                                try
+                                {
+                                    var feed = parser.ParseXml(
+                                        url,
+                                        feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
+                                    var newItems = from oldItem in newsFeed.Items
+                                                   join item in feed.Items on oldItem equals item
+                                                   where !item.Equals(oldItem)
+                                                   select item;
+                                    var rssItems = newItems as IList<RssItem> ?? newItems.ToList();
+                                    newsFeed.AddRange(rssItems);
+                                    isBusy = false;
+                                }
+                                catch (Exception)
+                                {
+                                }
+                            });
+                }
             }
         }
 
-        public void Execute(CoroutineExecutionContext context)
-        {
-            // var worker = new System.ComponentModel.BackgroundWorker.BackgroundWorker();
+        private long i = 0;
 
-            /* var worker = new System.ComponentModel.BackgroundWorker();
-            using (var backgroundWorker = new System.ComponentModel BackgroundWorker())
-            {
-                backgroundWorker.DoWork += (e, sender) => action();
-                backgroundWorker.RunWorkerCompleted += (e, sender) => Completed(this, new ResultCompletionEventArgs());
-                backgroundWorker.RunWorkerAsync();
-            }*/
+        private void RefreshOnTime(object state)
+        {
+            i++;
+            Debug.WriteLine(i.ToString());
+            this.Refresh(this.loader, this.parser);
+            this.timer.Dispose();
+            TimerCallback callback = this.RefreshOnTime;
+            this.timer = new Timer(callback, null, 10000, 3000);
         }
     }
 }

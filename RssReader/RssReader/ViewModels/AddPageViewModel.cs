@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace RssReader.ViewModels
 {
+    using System.Diagnostics;
     using System.Runtime.InteropServices;
-
-    using Windows.Web.Syndication;
 
     using Caliburn.Micro;
 
     using RssReader.Storage;
 
     using Windows.UI.Core;
+    using Windows.Web.Syndication;
 
     public class AddPageViewModel : Screen
     {
@@ -43,22 +43,43 @@ namespace RssReader.ViewModels
             this.eventAggregator.Subscribe(this);
         }
 
-        public event EventHandler<ResultCompletionEventArgs> Completed = delegate { };
-
         public async void AddNewsLine(string url)
         {
             try
             {
                 navigationService.NavigateToViewModel<MainPageViewModel>();
-                var feed = (await loader.DownloadAsync(url)).GetXmlDocument(SyndicationFormat.Rss20).GetXml();
-                if (feed != null)
-                {
-                    var rssFeed = parser.ParseXml(url, feed);
-                    holder.AddLine(rssFeed);
-                    eventAggregator.Publish("All is ok", Execute.OnUIThread);
-                    return;
-                }
-                eventAggregator.Publish("Can not download rss.\nTry another address.", Execute.OnUIThread);
+                
+                var feedLoad = loader.DownloadAsync(url);
+
+                feedLoad.Progress =
+                    (info, progress) =>
+                    Debug.WriteLine(
+                        "{0}/{1} bytes {2:P}",
+                        progress.BytesRetrieved,
+                        progress.TotalBytesToRetrieve,
+                        (float)progress.BytesRetrieved / (float)progress.TotalBytesToRetrieve);
+
+                feedLoad.GetAwaiter().UnsafeOnCompleted(
+                    () =>
+                        {
+                            try
+                            {
+                                var feed = parser.ParseXml(
+                                    url,
+                                    feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
+                                if (feed != null)
+                                {
+                                    holder.AddLine(feed);
+                                    eventAggregator.Publish("All is ok", Execute.OnUIThread);
+                                }
+                            }
+                            catch
+                            {
+                                eventAggregator.Publish(
+                                    "Can not download rss.\nTry another address.",
+                                    Execute.OnUIThread);
+                            }
+                        });
             }
             catch (Exception e)
             {

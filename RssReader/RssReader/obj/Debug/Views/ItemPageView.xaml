@@ -31,13 +31,17 @@
                     <DataTemplate>
                         <StackPanel Orientation="Vertical" Name="StackPanel">
                             <Image x:ConnectionId='2'
-                                MaxHeight="50"
-                                MaxWidth="80"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Source="{Binding ImageUrl}"
-                                Stretch="Uniform"                               
-                                   />
+                                MaxHeight="80"
+                                MaxWidth="50"
+                                Stretch="Uniform"                               >
+                                <Image.Source>
+                                    <BitmapImage UriSource="{Binding ImageUrl}" 
+                                                 DecodePixelWidth="300" DecodePixelHeight="200"
+                                                 />
+                                </Image.Source>
+                            </Image>
                             <TextBlock Text="{Binding Title}" Margin="20,5,0,10" Opacity="{Binding Opacity}" Foreground="#FF0F0E0E" />
                             <TextBlock Text="{Binding Link}" Margin="5,0,5,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
                             <TextBlock Text="{Binding PublicDate}" FontSize="14" Margin="30,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
