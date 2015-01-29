@@ -13,11 +13,20 @@ namespace RssReader.Storage
     using System.Linq;
     using System.Runtime.Serialization;
 
+    using Windows.UI.Xaml;
+
     using Microsoft.Xaml.Interactivity;
 
     [DataContract]
     public class RssFeed
     {
+        private bool isPlaceHolder = false;
+
+        public RssFeed()
+        {
+            isPlaceHolder = true;
+        }
+
         public RssFeed(
             string url, 
             string title, 
@@ -58,6 +67,16 @@ namespace RssReader.Storage
         public string ImageUrl { get; private set; }
 
         public bool OnDelete { get; set; }
+
+        public Visibility IsShowing
+        {
+            get
+            {
+                if (isPlaceHolder)
+                return Visibility.Visible;
+                return Visibility.Collapsed;
+            }
+        }
 
         public void AddRange(IEnumerable<RssItem> newItems)
         {

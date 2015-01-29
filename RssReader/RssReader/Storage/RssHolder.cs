@@ -34,7 +34,7 @@
                 this.parser = parser;
                 this.loader = loader;
                 TimerCallback callback = this.RefreshOnTime;
-                this.timer = new Timer(callback, null, 10000, 3000);
+                this.timer = new Timer(callback, null, 60000, 3000);
                 newsHeaders = new ObservableCollection<RssFeed>(SuspensionManager.RestoreAsync().Result);
             }
             catch (Exception)
@@ -59,9 +59,14 @@
             Execute.OnUIThread(
                 () =>
                     {
-                        newsHeaders.Add(feed);
+                        newsHeaders[newsHeaders.Count - 1] = feed;
                         isBusy = false;
                     });
+        }
+
+        public void AddPlaceHolder()
+        {
+            newsHeaders.Add(new RssFeed());
         }
 
         public void RemoveLine(RssFeed feed)
@@ -120,7 +125,7 @@
             this.Refresh(this.loader, this.parser);
             this.timer.Dispose();
             TimerCallback callback = this.RefreshOnTime;
-            this.timer = new Timer(callback, null, 10000, 3000);
+            this.timer = new Timer(callback, null, 60000, 3000);
         }
     }
 }

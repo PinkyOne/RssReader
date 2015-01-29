@@ -9,6 +9,8 @@
 
         void AddLine(RssFeed feed);
 
+        void AddPlaceHolder();
+
         void RemoveLine(RssFeed feed);
 
         void Refresh(IDownloader loader, IParser parser);

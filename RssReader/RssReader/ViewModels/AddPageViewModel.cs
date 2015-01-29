@@ -51,6 +51,8 @@ namespace RssReader.ViewModels
                 
                 var feedLoad = loader.DownloadAsync(url);
 
+                holder.AddPlaceHolder();
+
                 feedLoad.Progress =
                     (info, progress) =>
                     Debug.WriteLine(

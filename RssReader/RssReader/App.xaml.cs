@@ -47,7 +47,7 @@ namespace RssReader
             MessageBinder.SpecialValues.Add("$clickeditem", c => ((ItemClickEventArgs)c.EventArgs).ClickedItem);
             MessageBinder.SpecialValues.Add(
                 "$longtappeditem", 
-                c => ((TextBlock)((RightTappedRoutedEventArgs)c.EventArgs).OriginalSource).DataContext);
+                c => ((FrameworkElement)((RightTappedRoutedEventArgs)c.EventArgs).OriginalSource).DataContext);
 
             this.container.PerRequest<ItemPageViewModel>();
             this.container.PerRequest<DetailPageViewModel>();

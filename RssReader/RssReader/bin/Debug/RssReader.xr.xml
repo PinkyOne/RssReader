@@ -11,6 +11,7 @@
     <RootPropertyPathName Name="News" />
     <RootPropertyPathName Name="Description" />
     <RootPropertyPathName Name="CountUnviewedItems" />
+    <RootPropertyPathName Name="IsShowing" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Caliburn.Micro.CaliburnApplication" />
@@ -22,6 +23,7 @@
       <RootProperty Name="Children" />
       <RootProperty Name="ChildrenTransitions" />
       <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="Margin" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
     </RootType>
@@ -38,6 +40,7 @@
       <RootEvent Name="ImageFailed" />
     </RootType>
     <RootType FullName="RssReader.Controls.AnimationImage">
+      <RootProperty Name="Name" />
       <RootProperty Name="ImageUrl" />
       <RootProperty Name="Width" />
       <RootProperty Name="Height" />
@@ -63,6 +66,7 @@
       <RootProperty Name="CharacterSpacing" />
       <RootProperty Name="Inlines" />
       <RootProperty Name="Opacity" />
+      <RootProperty Name="OpticalMarginAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Margin" />
@@ -117,6 +121,9 @@
       <RootProperty Name="Name" />
       <RootProperty Name="Orientation" />
       <RootProperty Name="Background" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="CompositeMode" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.RichTextBlock">
       <RootProperty Name="Name" />
