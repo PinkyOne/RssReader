@@ -9,6 +9,8 @@
     using System.Threading;
     using System.Threading.Tasks;
 
+    using Windows.UI.Xaml;
+
     using Caliburn.Micro;
 
     using Windows.Foundation;
@@ -27,10 +29,14 @@
 
         private IDownloader loader;
 
-        public RssHolder(IDownloader loader, IParser parser)
+        private IEventAggregator aggregator;
+
+        public RssHolder(IDownloader loader, IParser parser,IEventAggregator aggregator)
         {
             try
             {
+                this.aggregator = aggregator;
+                this.aggregator.Subscribe(this);
                 this.parser = parser;
                 this.loader = loader;
                 TimerCallback callback = this.RefreshOnTime;
@@ -64,6 +70,11 @@
                     });
         }
 
+        public void RemovePlaceHolder()
+        {
+            newsHeaders.Remove(newsHeaders[newsHeaders.Count - 1]);
+        }
+
         public void AddPlaceHolder()
         {
             newsHeaders.Add(new RssFeed());
@@ -76,22 +87,15 @@
 
         public async void Refresh(IDownloader loader, IParser parser)
         {
-            if (!isBusy) 
+            if (!isBusy)
             {
                 isBusy = true;
                 foreach (var newsFeed in newsHeaders)
                 {
                     var url = newsFeed.Url;
                     var feedLoad = loader.DownloadAsync(url);
-
-                    feedLoad.Progress =
-                        (info, progress) =>
-                        Debug.WriteLine(
-                            "{0}/{1} bytes {2:P}",
-                            progress.BytesRetrieved,
-                            progress.TotalBytesToRetrieve,
-                            (float)progress.BytesRetrieved / (float)progress.TotalBytesToRetrieve);
-
+                    newsFeed.IsShowing = Visibility.Visible;
+                    aggregator.Publish("HolderBusy", Execute.OnUIThread);
                     feedLoad.GetAwaiter().UnsafeOnCompleted(
                         () =>
                             {
@@ -107,6 +111,8 @@
                                     var rssItems = newItems as IList<RssItem> ?? newItems.ToList();
                                     newsFeed.AddRange(rssItems);
                                     isBusy = false;
+                                    newsFeed.IsShowing = Visibility.Collapsed;
+                                    aggregator.Publish("HolderBusy", Execute.OnUIThread);
                                 }
                                 catch (Exception)
                                 {

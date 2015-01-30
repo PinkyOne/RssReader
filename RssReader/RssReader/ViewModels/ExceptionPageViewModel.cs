@@ -23,7 +23,8 @@ namespace RssReader.ViewModels
         
         public void ReturnToMainPage()
         {
-            Execute.OnUIThread(() => navigationService.NavigateToViewModel<MainPageViewModel>());
+            //Execute.OnUIThread(() => navigationService.NavigateToViewModel<MainPageViewModel>());
+            Execute.OnUIThread(() => navigationService.GoBack());
         }
     }
 }

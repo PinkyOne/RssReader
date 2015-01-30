@@ -11,6 +11,8 @@
 
         void AddPlaceHolder();
 
+        void RemovePlaceHolder();
+
         void RemoveLine(RssFeed feed);
 
         void Refresh(IDownloader loader, IParser parser);

@@ -9,6 +9,8 @@ namespace RssReader.ViewModels
     using System.Diagnostics;
     using System.Runtime.InteropServices;
 
+    using Windows.Foundation;
+
     using Caliburn.Micro;
 
     using RssReader.Storage;
@@ -48,38 +50,42 @@ namespace RssReader.ViewModels
             try
             {
                 navigationService.NavigateToViewModel<MainPageViewModel>();
-                
+
                 var feedLoad = loader.DownloadAsync(url);
 
                 holder.AddPlaceHolder();
-
-                feedLoad.Progress =
-                    (info, progress) =>
-                    Debug.WriteLine(
-                        "{0}/{1} bytes {2:P}",
-                        progress.BytesRetrieved,
-                        progress.TotalBytesToRetrieve,
-                        (float)progress.BytesRetrieved / (float)progress.TotalBytesToRetrieve);
-
                 feedLoad.GetAwaiter().UnsafeOnCompleted(
                     () =>
                         {
                             try
                             {
-                                var feed = parser.ParseXml(
-                                    url,
-                                    feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
-                                if (feed != null)
+                                if (feedLoad.Status == AsyncStatus.Completed)
                                 {
-                                    holder.AddLine(feed);
-                                    eventAggregator.Publish("All is ok", Execute.OnUIThread);
+                                    var feed = parser.ParseXml(
+                                        url,
+                                        feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
+                                    feedLoad.Close();
+                                    if (feed != null)
+                                    {
+                                        holder.AddLine(feed);
+                                        eventAggregator.Publish("All is ok", Execute.OnUIThread);
+                                    }
+                                    feedLoad.Close();
+                                }
+                                else if (feedLoad.Status == AsyncStatus.Error)
+                                {
+                                    var code = feedLoad.ErrorCode;
+                                    feedLoad.Close();
+                                    holder.RemovePlaceHolder();
+                                    eventAggregator.Publish(
+                                        "Can not download rss.\nTry another address.",
+                                        Execute.OnUIThread);
                                 }
                             }
-                            catch
+                            catch (Exception e)
                             {
-                                eventAggregator.Publish(
-                                    "Can not download rss.\nTry another address.",
-                                    Execute.OnUIThread);
+                                feedLoad.Close();
+                                eventAggregator.Publish(e.Message, Execute.OnUIThread);
                             }
                         });
             }

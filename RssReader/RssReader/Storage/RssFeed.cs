@@ -76,6 +76,17 @@ namespace RssReader.Storage
                 return Visibility.Visible;
                 return Visibility.Collapsed;
             }
+            set
+            {
+                if (value == Visibility.Visible)
+                {
+                    isPlaceHolder = true;
+                }
+                else
+                {
+                    isPlaceHolder = false;
+                }
+            }
         }
 
         public void AddRange(IEnumerable<RssItem> newItems)
