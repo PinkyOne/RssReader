@@ -9,12 +9,11 @@ namespace RssReader.ViewModels
     using System.Diagnostics;
     using System.Runtime.InteropServices;
 
-    using Windows.Foundation;
-
     using Caliburn.Micro;
 
     using RssReader.Storage;
 
+    using Windows.Foundation;
     using Windows.UI.Core;
     using Windows.Web.Syndication;
 

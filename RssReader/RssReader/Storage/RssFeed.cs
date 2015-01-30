@@ -13,9 +13,9 @@ namespace RssReader.Storage
     using System.Linq;
     using System.Runtime.Serialization;
 
-    using Windows.UI.Xaml;
-
     using Microsoft.Xaml.Interactivity;
+
+    using Windows.UI.Xaml;
 
     [DataContract]
     public class RssFeed

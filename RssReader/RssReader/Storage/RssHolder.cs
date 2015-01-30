@@ -9,12 +9,11 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using Windows.UI.Xaml;
-
     using Caliburn.Micro;
 
     using Windows.Foundation;
     using Windows.Storage;
+    using Windows.UI.Xaml;
     using Windows.Web.Syndication;
 
     public class RssHolder : INewsHolder
@@ -31,7 +30,7 @@
 
         private IEventAggregator aggregator;
 
-        public RssHolder(IDownloader loader, IParser parser,IEventAggregator aggregator)
+        public RssHolder(IDownloader loader, IParser parser, IEventAggregator aggregator)
         {
             try
             {
@@ -122,12 +121,8 @@
             }
         }
 
-        private long i = 0;
-
         private void RefreshOnTime(object state)
         {
-            i++;
-            Debug.WriteLine(i.ToString());
             this.Refresh(this.loader, this.parser);
             this.timer.Dispose();
             TimerCallback callback = this.RefreshOnTime;
