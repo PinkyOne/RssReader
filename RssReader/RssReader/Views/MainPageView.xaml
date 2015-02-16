@@ -10,8 +10,48 @@
     xmlns:Controls="using:RssReader.Controls"
     mc:Ignorable="d"
     Background="#FFE8BEE8">
-
-    <Grid x:Name="Grid">
+    <Page.Resources>
+        <DataTemplate x:Key="feedTemplate">
+            <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="80" Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition MaxWidth="20" Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    MaxHeight="80"
+                    MaxWidth="50"
+                    Stretch="Uniform"
+                    ImageFailed="ImageImageFailed">
+                    <Image.Source>
+                        <BitmapImage
+                            UriSource="{Binding ImageUrl}"
+                            DecodePixelWidth="300" 
+                            DecodePixelHeight="200"/>
+                    </Image.Source>
+                </Image>
+                <ProgressRing Background="#FFE8BEE8" Grid.Row="2" Grid.Column="0" IsActive="{Binding IsShowing}" MaxWidth="50" MaxHeight="50"></ProgressRing>
+                <TextBlock Grid.Row="0" Grid.Column="1" Margin="0" Text="{Binding Title}" OpticalMarginAlignment="TrimSideBearings" Foreground="Black" Style="{StaticResource BodyTextBlockStyle}" MaxLines="0" TextTrimming="WordEllipsis" LineStackingStrategy="MaxHeight" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Link}" OpticalMarginAlignment="TrimSideBearings" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" TextTrimming="WordEllipsis" LineStackingStrategy="MaxHeight" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Description}" OpticalMarginAlignment="TrimSideBearings" FontSize="14" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" TextTrimming="WordEllipsis" LineStackingStrategy="MaxHeight" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding CountUnviewedItems}" OpticalMarginAlignment="TrimSideBearings"></TextBlock>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid x:Name="Grid" HorizontalAlignment="Left" Margin="0,0.333,0,-0.333" Width="400" Height="640" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="83"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <FlyoutBase.AttachedFlyout>
             <Flyout x:Name="ExceptionFlyout">
                 <StackPanel>
@@ -24,23 +64,23 @@
                 </StackPanel>
             </Flyout>
         </FlyoutBase.AttachedFlyout>
-        <Button HorizontalAlignment="Left" 
+        <Button Grid.Row="0" HorizontalAlignment="Left" 
                 Margin="149,0,0,0"
                 VerticalAlignment="Top"
                 Width="73"
                 micro:Message.Attach="
-                [Event Click] = [Action Refresh()]" Height="77" MinHeight="40" MinWidth="40">
+                [Event Click] = [Action Refresh()]" Height="77" MinHeight="40" MinWidth="40" Grid.RowSpan="1">
             <Button.Background>
                 <ImageBrush ImageSource="ms-appx:///Assets/iconrefresh.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <Button HorizontalAlignment="Stretch" 
+        <Button Grid.Row="0" HorizontalAlignment="Stretch" 
                 Margin="250,-3,41,0" 
                 VerticalAlignment="Top" 
                 micro:Message.Attach=
                 "[Event Click] = [Action AddNewsLine()]" 
                 BorderBrush="{x:Null}" 
-                Foreground="{x:Null}" RequestedTheme="Light" Height="81" RenderTransformOrigin="0.5,0.5">
+                Foreground="{x:Null}" RequestedTheme="Light" Height="81" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="1">
             <Button.Projection>
                 <PlaneProjection RotationX="0" RotationY="0" RotationZ="0"/>
             </Button.Projection>
@@ -51,9 +91,16 @@
                 <ImageBrush ImageSource="ms-appx:///Assets/Plus-png.png" Stretch="Uniform"/>
             </Button.Background>
         </Button>
-        <ScrollViewer Name="ScrollViewer" Margin="10,83,10,0">
-            <ListView Name="ListView"
-                      
+        <ScrollViewer Grid.Row="1" Name="ScrollViewer" IsScrollInertiaEnabled="True"
+                IsDeferredScrollingEnabled="True"
+                IsVerticalScrollChainingEnabled="True"
+                IsVerticalRailEnabled="True"
+                VerticalScrollMode="Enabled" 
+                HorizontalScrollMode="Enabled"
+                VerticalScrollBarVisibility="Hidden"
+                ZoomMode="Enabled" AllowDrop="True">
+            <StackPanel>
+                <ListView Name="ListView"
                       ItemsSource="{Binding News}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
@@ -69,51 +116,22 @@
                       IsActiveView="False" 
                       ItemClick="ItemClicked" 
                       Loaded="OnLoaded"
-                      RightTapped="ListViewRightTapped1">
-                <FlyoutBase.AttachedFlyout>
-                    <Flyout x:Name="Flyout">
-                        <StackPanel Background="#FFE8BEE8">
-                            <Button 
+                      ItemTemplate="{StaticResource feedTemplate}"
+                      RightTapped="ListViewRightTapped1" Margin="0" HorizontalAlignment="Left" Width="Auto" Grid.RowSpan="1" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <FlyoutBase.AttachedFlyout>
+                        <Flyout x:Name="Flyout">
+                            <StackPanel Background="#FFE8BEE8">
+                                <Button 
                                 micro:Message.Attach=
                                 "[Event Click] = 
                                 [Action DeleteItem()]"
                                 Content="Delete" Click="ButtonClick"
                                 Background="#FFE8BEE8"/>
-                        </StackPanel>
-                    </Flyout>
-                </FlyoutBase.AttachedFlyout>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,0,0,0">
-                        <StackPanel Margin="0,0,0,0" HorizontalAlignment="Stretch"  CompositeMode="MinBlend" Orientation="Horizontal">
-                            <StackPanel Visibility="{Binding IsShowing}" Name="StackPanel" Orientation="Vertical">
-                                <Controls:AnimationImage Name="AnimationImage" ImageUrl="/Assets/loading.gif" Width="50" Height="50"></Controls:AnimationImage>
                             </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                <Image 
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    MaxHeight="80"
-                                    MaxWidth="50"
-                                    Stretch="Uniform" ImageFailed="ImageImageFailed">
-                                    <Image.Source>
-                                        <BitmapImage 
-                                            UriSource="{Binding ImageUrl}"
-                                            DecodePixelWidth="300" DecodePixelHeight="200"/>
-                                    </Image.Source>
-                                </Image>
-                            </StackPanel>
-                            <StackPanel Margin="0,0,4000,0" Orientation="Vertical">
-                                <TextBlock Text="{Binding Title}" OpticalMarginAlignment="TrimSideBearings" Margin="20,5,0,0" Foreground="Black" Style="{StaticResource BodyTextBlockStyle}" />
-                                <TextBlock Text="{Binding CountUnviewedItems}" Margin="350,0,0,0" OpticalMarginAlignment="TrimSideBearings"></TextBlock>
-                                <TextBlock Text="{Binding Link}" Margin="5,0,5,0" OpticalMarginAlignment="TrimSideBearings" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
-                                <TextBlock Text="{Binding Description}"  OpticalMarginAlignment="TrimSideBearings" FontSize="14" Margin="0,0,100,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        </Flyout>
+                    </FlyoutBase.AttachedFlyout>
+                </ListView>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

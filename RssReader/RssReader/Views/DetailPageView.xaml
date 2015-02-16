@@ -8,9 +8,7 @@
     xmlns:micro="using:Caliburn.Micro"
     mc:Ignorable="d"
     Background="#FFE8BEE8">
-
     <Grid>
-
         <ScrollViewer 
                 IsScrollInertiaEnabled="True"
                 IsDeferredScrollingEnabled="True"

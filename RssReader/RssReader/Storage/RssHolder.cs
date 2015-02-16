@@ -32,20 +32,15 @@
 
         public RssHolder(IDownloader loader, IParser parser, IEventAggregator aggregator)
         {
-            try
-            {
-                this.aggregator = aggregator;
-                this.aggregator.Subscribe(this);
-                this.parser = parser;
-                this.loader = loader;
-                TimerCallback callback = this.RefreshOnTime;
-                this.timer = new Timer(callback, null, 60000, 3000);
-                newsHeaders = new ObservableCollection<RssFeed>(SuspensionManager.RestoreAsync().Result);
-            }
-            catch (Exception)
-            {
-                newsHeaders = new ObservableCollection<RssFeed>();
-            }
+            this.aggregator = aggregator;
+            this.aggregator.Subscribe(this);
+            this.parser = parser;
+            this.loader = loader;
+            TimerCallback callback = this.RefreshOnTime;
+            this.timer = new Timer(callback, null, 60000, 3000);
+            var restoredFeed = SuspensionManager.RestoreAsync();
+            if (!restoredFeed.IsFaulted) newsHeaders = new ObservableCollection<RssFeed>(restoredFeed.Result);
+            else newsHeaders = new ObservableCollection<RssFeed>();
         }
 
         public bool IsBusy()
@@ -89,35 +84,28 @@
             if (!isBusy)
             {
                 isBusy = true;
-                foreach (var newsFeed in newsHeaders)
+                for (int i = 0; i < newsHeaders.Count; i++)
                 {
-                    var url = newsFeed.Url;
+                    Execute.OnUIThread(() => newsHeaders[i] = new RssFeed(newsHeaders[i], true));
+                    var url = newsHeaders[i].Url;
                     var feedLoad = loader.DownloadAsync(url);
-                    newsFeed.IsShowing = Visibility.Visible;
-                    aggregator.Publish("HolderBusy", Execute.OnUIThread);
-                    feedLoad.GetAwaiter().UnsafeOnCompleted(
-                        () =>
-                            {
-                                try
-                                {
-                                    var feed = parser.ParseXml(
-                                        url,
-                                        feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
-                                    var newItems = from oldItem in newsFeed.Items
-                                                   join item in feed.Items on oldItem equals item
-                                                   where !item.Equals(oldItem)
-                                                   select item;
-                                    var rssItems = newItems as IList<RssItem> ?? newItems.ToList();
-                                    newsFeed.AddRange(rssItems);
-                                    isBusy = false;
-                                    newsFeed.IsShowing = Visibility.Collapsed;
-                                    aggregator.Publish("HolderBusy", Execute.OnUIThread);
-                                }
-                                catch (Exception)
-                                {
-                                }
-                            });
+                    newsHeaders[i].IsShowing = true;
+                    this.aggregator.Publish("HolderBusy", Execute.OnUIThread);
+                    await feedLoad;
+                    var feed = parser.ParseXml(
+                        url,
+                        feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
+                    var newItems = from oldItem in newsHeaders[i].Items
+                                   join item in feed.Items on oldItem equals item
+                                   where !item.Equals(oldItem)
+                                   select item;
+                    var rssItems = newItems as IList<RssItem> ?? newItems.ToList();
+                    newsHeaders[i].AddRange(rssItems);
+                    newsHeaders[i].IsShowing = false;
+                    Execute.OnUIThread(() => newsHeaders[i] = new RssFeed(newsHeaders[i], false));
+                    this.aggregator.Publish("HolderNotBusy", Execute.OnUIThread);
                 }
+                isBusy = false;
             }
         }
 

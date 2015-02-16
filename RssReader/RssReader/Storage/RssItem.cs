@@ -23,33 +23,31 @@ namespace RssReader.Storage
         {
             this.Title =
                 (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "title" select xmlElement)
-                    .First().Value;
+                    .FirstOrDefault().Value ?? string.Empty;
             this.Description =
                 (from xmlElement in rssItem.Elements()
                  where xmlElement.Name.LocalName == "description"
-                 select xmlElement).First().Value;
+                 select xmlElement).FirstOrDefault().Value ?? string.Empty;
 
             var s = WebUtility.HtmlDecode(Description);
 
             this.Link =
                 (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "link" select xmlElement)
-                    .First().Value;
+                    .FirstOrDefault().Value ?? string.Empty;
 
             this.PublicDate =
                 (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "pubDate" select xmlElement)
-                    .First().Value;
+                    .FirstOrDefault().Value ?? string.Empty;
             string url = null;
-            try
-            {
+            var sequence = from xmlElement in rssItem.Elements()
+                           where xmlElement.Name.LocalName == "image"
+                           select xmlElement;
+            var seqHaveElements = sequence.Any();
+            if (seqHaveElements)
                 url =
                     (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "image" select xmlElement)
                         .FirstOrDefault().Value;
-            }
-            catch (Exception e)
-            {
-                this.ImageUrl = url
-                                ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
-            }
+            this.ImageUrl = url ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
             this.Opacity = 1.0;
         }
 

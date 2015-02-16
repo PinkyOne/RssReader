@@ -8,14 +8,48 @@
     xmlns:micro="using:Caliburn.Micro"
     mc:Ignorable="d"
     Background="#FFE8BEE8">
+    <Page.Resources>
+        <DataTemplate x:Key="FeedDataTemplate">
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
 
-    <Grid>
-        <TextBlock FontSize="30" Margin="40,10,30,590" FontFamily="Freestyle Script">RssReader by Pinky</TextBlock>
-        <ScrollViewer Margin="0,60,0,0" VerticalScrollBarVisibility="Visible"
-            IsVerticalRailEnabled="True"
-                      Name="ScrollViewer"
-            BringIntoViewOnFocusChange="True" Background="Transparent">
-            <ListView x:ConnectionId='1' Name="ListView"
+                <Image x:ConnectionId='1' Grid.Row="0" Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    MaxHeight="80"
+                    MaxWidth="50"
+                    Stretch="Uniform"                               >
+                    <Image.Source>
+                        <BitmapImage UriSource="{Binding ImageUrl}" 
+                            DecodePixelWidth="300" DecodePixelHeight="200"/>
+                    </Image.Source>
+                </Image>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Margin="5,5,0,10" Opacity="{Binding Opacity}" Foreground="#FF0F0E0E" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Link}" Margin="5,0,0,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PublicDate}" FontSize="14" Margin="5,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Height="600">
+        <TextBlock FontSize="30" Margin="40,10" FontFamily="Freestyle Script">RssReader by Pinky</TextBlock>
+        <ScrollViewer Name="ScrollViewer" IsScrollInertiaEnabled="True"
+                IsDeferredScrollingEnabled="True"
+                IsVerticalScrollChainingEnabled="True"
+                IsVerticalRailEnabled="True"
+                VerticalScrollMode="Enabled" 
+                HorizontalScrollMode="Enabled"
+                VerticalScrollBarVisibility="Hidden"
+                ZoomMode="Enabled" AllowDrop="True" Margin="0,55,0,0">
+            <StackPanel VerticalAlignment="Top">
+                <ListView x:ConnectionId='2' Name="ListView"
                       ItemsSource="{Binding Feed}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
@@ -26,30 +60,12 @@
                       SelectedIndex="-1" 
                       IsActiveView="False" 
                                               
-                                       >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical" Name="StackPanel">
-                            <Image x:ConnectionId='2'
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                MaxHeight="80"
-                                MaxWidth="50"
-                                Stretch="Uniform"                               >
-                                <Image.Source>
-                                    <BitmapImage UriSource="{Binding ImageUrl}" 
-                                                 DecodePixelWidth="300" DecodePixelHeight="200"
-                                                 />
-                                </Image.Source>
-                            </Image>
-                            <TextBlock Text="{Binding Title}" Margin="20,5,0,10" Opacity="{Binding Opacity}" Foreground="#FF0F0E0E" />
-                            <TextBlock Text="{Binding Link}" Margin="5,0,5,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
-                            <TextBlock Text="{Binding PublicDate}" FontSize="14" Margin="30,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                       
+                      ItemTemplate="{StaticResource FeedDataTemplate}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                      >
+                </ListView>
+            </StackPanel>
         </ScrollViewer>
-        </Grid>
+    </Grid>
 </Page>
 

@@ -20,11 +20,11 @@ namespace RssReader.Storage
     [DataContract]
     public class RssFeed
     {
-        private bool isPlaceHolder = false;
+        private bool isInProgress = false;
 
         public RssFeed()
         {
-            isPlaceHolder = true;
+            this.isInProgress = true;
         }
 
         public RssFeed(
@@ -43,6 +43,19 @@ namespace RssReader.Storage
             this.CountUnviewedItems = items.Count;
             this.ImageUrl = imageUrl
                             ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
+        }
+
+        public RssFeed(RssFeed feed, bool isInProgress)
+        {
+            this.Url = feed.Url;
+            this.Title = feed.Title;
+            this.Link = feed.Link;
+            this.Description = feed.Description;
+            this.Items = feed.Items;
+            this.CountUnviewedItems = feed.CountUnviewedItems;
+            this.ImageUrl = feed.ImageUrl
+                            ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
+            this.isInProgress = isInProgress;
         }
 
         [DataMember]
@@ -68,24 +81,15 @@ namespace RssReader.Storage
 
         public bool OnDelete { get; set; }
 
-        public Visibility IsShowing
+        public bool IsShowing
         {
             get
             {
-                if (isPlaceHolder)
-                return Visibility.Visible;
-                return Visibility.Collapsed;
+                return this.isInProgress;
             }
             set
             {
-                if (value == Visibility.Visible)
-                {
-                    isPlaceHolder = true;
-                }
-                else
-                {
-                    isPlaceHolder = false;
-                }
+                this.isInProgress = value;
             }
         }
 

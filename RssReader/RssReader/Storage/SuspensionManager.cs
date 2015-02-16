@@ -62,7 +62,7 @@ namespace RssReader.Storage
                 var serializer = new DataContractSerializer(typeof(RssFeed[]));
                 return (RssFeed[])serializer.ReadObject(inStream.AsStreamForRead());
             }
-            catch (Exception e)
+            catch (FileNotFoundException e)
             {
                 throw new SuspensionManagerException(e);
             }
