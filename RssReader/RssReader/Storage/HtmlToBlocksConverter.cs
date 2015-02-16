@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
 
+    using Caliburn.Micro;
+
     using HtmlAgilityPack;
 
     using Windows.UI;
@@ -15,6 +17,13 @@
 
     public class HtmlToBlocksConverter : IHtmlToBlocksConverter
     {
+        private IEventAggregator eventAggregator;
+
+        public HtmlToBlocksConverter(IEventAggregator eventAggregator)
+        {
+            this.eventAggregator = eventAggregator;
+        }
+
         public List<Block> GenerateBlocksForHtml(string xhtml)
         {
             var bc = new List<Block>();
@@ -27,8 +36,9 @@
                 var b = GenerateParagraph(doc.DocumentNode);
                 bc.Add(b);
             }
-            catch
+            catch (Exception e)
             {
+                eventAggregator.Publish(e.Message, Execute.OnUIThread);
             }
 
             return bc;
@@ -192,7 +202,7 @@
             var bimg = img.Source as BitmapImage;
             if (bimg.PixelWidth > 800 || bimg.PixelHeight > 600)
             {
-                img.Width = 800; 
+                img.Width = 800;
                 img.Height = 600;
                 if (bimg.PixelWidth > 800)
                 {

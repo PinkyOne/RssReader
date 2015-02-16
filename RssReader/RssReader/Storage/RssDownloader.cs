@@ -3,6 +3,7 @@
 namespace RssReader.Storage
 {
     using System;
+    using System.Net;
     using System.Net.Http;
 
     using Windows.Foundation;
@@ -14,11 +15,17 @@ namespace RssReader.Storage
         {
             try
             {
-                var client = new SyndicationClient();
-                var feed = client.RetrieveFeedAsync(new Uri(url));
-                return feed;
+                var testerClient = new HttpClient();
+                var responseMessage = testerClient.GetAsync(url).Result;
+                if (responseMessage.StatusCode == HttpStatusCode.OK)
+                {
+                    var client = new SyndicationClient();
+                    var feed = client.RetrieveFeedAsync(new Uri(url));
+                    return feed;
+                }
+                return null;
             }
-            catch (HttpRequestException e)
+            catch (InvalidOperationException)
             {
                 return null;
             }

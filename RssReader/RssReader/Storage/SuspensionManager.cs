@@ -36,7 +36,7 @@ namespace RssReader.Storage
                 var file =
                     await
                     ApplicationData.Current.LocalFolder.CreateFileAsync(
-                        "collection", 
+                        "collection",
                         CreationCollisionOption.ReplaceExisting);
                 using (var fileStream = await file.OpenStreamForWriteAsync())
                 {

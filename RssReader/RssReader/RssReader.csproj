@@ -88,10 +88,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage\HtmlToBlocksConverter.cs" />
-    <Compile Include="Storage\IDownloader.cs" />
-    <Compile Include="Storage\IHtmlToBlocksConverter.cs" />
-    <Compile Include="Storage\INewsHolder.cs" />
-    <Compile Include="Storage\IParser.cs" />
+    <Compile Include="Storage\Interfaces\IDownloader.cs" />
+    <Compile Include="Storage\Interfaces\IHtmlToBlocksConverter.cs" />
+    <Compile Include="Storage\Interfaces\INewsHolder.cs" />
+    <Compile Include="Storage\Interfaces\IParser.cs" />
     <Compile Include="Controls\AnimationImage.xaml.cs">
       <DependentUpon>AnimationImage.xaml</DependentUpon>
     </Compile>

@@ -53,40 +53,35 @@ namespace RssReader.ViewModels
                 var feedLoad = loader.DownloadAsync(url);
 
                 holder.AddPlaceHolder();
-                feedLoad.GetAwaiter().UnsafeOnCompleted(
-                    () =>
-                        {
-                            try
-                            {
-                                if (feedLoad.Status == AsyncStatus.Completed)
-                                {
-                                    var feed = parser.ParseXml(
-                                        url,
-                                        feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
-                                    feedLoad.Close();
-                                    if (feed != null)
-                                    {
-                                        holder.AddLine(feed);
-                                        eventAggregator.Publish("All is ok", Execute.OnUIThread);
-                                    }
-                                    feedLoad.Close();
-                                }
-                                else if (feedLoad.Status == AsyncStatus.Error)
-                                {
-                                    var code = feedLoad.ErrorCode;
-                                    feedLoad.Close();
-                                    holder.RemovePlaceHolder();
-                                    eventAggregator.Publish(
-                                        "Can not download rss.\nTry another address.",
-                                        Execute.OnUIThread);
-                                }
-                            }
-                            catch (Exception e)
-                            {
-                                feedLoad.Close();
-                                eventAggregator.Publish(e.Message, Execute.OnUIThread);
-                            }
-                        });
+                await feedLoad;
+                var feedResult = feedLoad;
+                if (feedResult == null)
+                {
+                    holder.RemovePlaceHolder();
+                    eventAggregator.Publish("Can not download rss.\nTry another address.", Execute.OnUIThread);
+                    return;
+                }
+                if (feedResult.Status == AsyncStatus.Completed)
+                {
+                    var feed = parser.ParseXml(
+                        url,
+                        feedResult.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
+                    feedResult.Close();
+                    if (feed != null)
+                    {
+                        holder.AddLine(feed);
+                        eventAggregator.Publish("All is ok", Execute.OnUIThread);
+                    }
+                    feedResult.Close();
+                }
+                else if (feedResult.Status == AsyncStatus.Error)
+                {
+                    var code = feedResult.ErrorCode;
+                    feedResult.Close();
+                    holder.RemovePlaceHolder();
+                    eventAggregator.Publish("Can not download rss.\nTry another address.", Execute.OnUIThread);
+                }
+
             }
             catch (Exception e)
             {

@@ -20,7 +20,7 @@ namespace RssReader.ViewModels
         }
 
         public string Parameter { get; private set; }
-        
+
         public void ReturnToMainPage()
         {
             Execute.OnUIThread(() => navigationService.GoBack());

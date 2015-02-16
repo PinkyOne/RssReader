@@ -84,8 +84,6 @@ namespace RssReader.ViewModels
                 var task = new Task(() => holder.Refresh(downloader, parser));
                 task.ConfigureAwait(false);
                 task.Start();
-               // this.NotifyOfPropertyChange(() => News);
-              //  task.ContinueWith(delegate { this.NotifyOfPropertyChange(() => this.News); });
             }
         }
 
@@ -94,7 +92,6 @@ namespace RssReader.ViewModels
             if (message == "HolderBusy")
             {
                 this.NotifyOfPropertyChange(() => News);
-                //navigationService.NavigateToViewModel<MainPageViewModel>();
                 return;
             }
             if (message == "HolderNotBusy")

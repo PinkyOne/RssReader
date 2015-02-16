@@ -18,7 +18,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Row="0" Grid.Column="0"
@@ -32,13 +32,15 @@
                             DecodePixelWidth="300" DecodePixelHeight="200"/>
                     </Image.Source>
                 </Image>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Margin="5,5,0,10" Opacity="{Binding Opacity}" Foreground="#FF0F0E0E" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Link}" Margin="5,0,0,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PublicDate}" FontSize="14" Margin="5,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
+                <StackPanel Grid.Row="0" Grid.Column="1" >
+                    <TextBlock Text="{Binding Title}" Margin="5,5,0,10" Opacity="{Binding Opacity}" Foreground="#FF0F0E0E" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Link}" Margin="5,0,0,0" Foreground="#FF1B1BB4" FontSize="9" Style="{StaticResource BodyTextBlockStyle}" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PublicDate}" FontSize="14" Margin="5,0,0,0" Foreground="Gray" Style="{StaticResource BodyTextBlockStyle}" />
+                </StackPanel>
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    <Grid Height="600">
+    <Grid>
         <TextBlock FontSize="30" Margin="40,10" FontFamily="Freestyle Script">RssReader by Pinky</TextBlock>
         <ScrollViewer Name="ScrollViewer" IsScrollInertiaEnabled="True"
                 IsDeferredScrollingEnabled="True"

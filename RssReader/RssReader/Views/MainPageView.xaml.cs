@@ -52,8 +52,8 @@ namespace RssReader.Views
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             this.ScrollViewer.ChangeView(
-                this.ScrollViewer.HorizontalOffset, 
-                verticalOffset, 
+                this.ScrollViewer.HorizontalOffset,
+                verticalOffset,
                 this.ScrollViewer.ZoomFactor);
         }
 
@@ -91,7 +91,7 @@ namespace RssReader.Views
             {
                 image.Source = new BitmapImage(new Uri("ms-appx:///Assets/placeholde.png"));
             }
-            
+
             this.InvalidateArrange();
         }
     }

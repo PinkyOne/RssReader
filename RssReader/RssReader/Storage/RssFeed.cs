@@ -28,17 +28,17 @@ namespace RssReader.Storage
         }
 
         public RssFeed(
-            string url, 
-            string title, 
-            string link, 
-            string description, 
-            string imageUrl, 
+            string url,
+            string title,
+            string link,
+            string description,
+            string imageUrl,
             ObservableCollection<RssItem> items)
         {
-            this.Url = url;
-            this.Title = title;
-            this.Link = link;
-            this.Description = description;
+            this.Url = url ?? string.Empty;
+            this.Title = title ?? string.Empty;
+            this.Link = link ?? string.Empty;
+            this.Description = description ?? string.Empty;
             this.Items = items;
             this.CountUnviewedItems = items.Count;
             this.ImageUrl = imageUrl

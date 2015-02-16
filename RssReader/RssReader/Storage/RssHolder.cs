@@ -19,7 +19,7 @@
     public class RssHolder : INewsHolder
     {
         private static ObservableCollection<RssFeed> newsHeaders = new ObservableCollection<RssFeed>();
-        
+
         private bool isBusy = false;
 
         private Timer timer;
@@ -58,10 +58,10 @@
             isBusy = true;
             Execute.OnUIThread(
                 () =>
-                    {
-                        newsHeaders[newsHeaders.Count - 1] = feed;
-                        isBusy = false;
-                    });
+                {
+                    newsHeaders[newsHeaders.Count - 1] = feed;
+                    isBusy = false;
+                });
         }
 
         public void RemovePlaceHolder()
@@ -86,12 +86,17 @@
                 isBusy = true;
                 for (int i = 0; i < newsHeaders.Count; i++)
                 {
+                    if (newsHeaders[i].IsShowing)
+                        continue;
                     Execute.OnUIThread(() => newsHeaders[i] = new RssFeed(newsHeaders[i], true));
                     var url = newsHeaders[i].Url;
                     var feedLoad = loader.DownloadAsync(url);
                     newsHeaders[i].IsShowing = true;
                     this.aggregator.Publish("HolderBusy", Execute.OnUIThread);
                     await feedLoad;
+                    if (feedLoad == null)
+                        continue;
+
                     var feed = parser.ParseXml(
                         url,
                         feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
