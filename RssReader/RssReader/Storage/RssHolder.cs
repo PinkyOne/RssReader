@@ -43,7 +43,8 @@
             var conn = new SQLiteConnection("feedDB.db");
             conn.CreateTable<RssItem>();
             conn.CreateTable<RssFeed>();
-            newsHeaders = new ObservableCollection<RssFeed>();
+            var savedHeaders = conn.Query<RssFeed>("select * from RssFeed");
+            newsHeaders = new ObservableCollection<RssFeed>(savedHeaders);
         }
 
         public bool IsBusy()
@@ -63,6 +64,8 @@
                 () =>
                 {
                     newsHeaders[newsHeaders.Count - 1] = feed;
+                    var conn = new SQLiteConnection("feedDB.db");
+                    conn.Insert(feed);
                     isBusy = false;
                 });
         }
@@ -80,6 +83,8 @@
         public void RemoveLine(RssFeed feed)
         {
             newsHeaders.Remove(feed);
+            var conn = new SQLiteConnection("feedDB.db");
+            conn.Delete<RssFeed>(feed.Id);
         }
 
         public async void Refresh(IDownloader loader, IParser parser)
