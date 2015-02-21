@@ -52,6 +52,11 @@
             return isBusy;
         }
 
+        public int CountOfHeaders()
+        {
+            return newsHeaders.Count;
+        }
+
         public ObservableCollection<RssFeed> GetNewsLines()
         {
             return newsHeaders;
@@ -107,7 +112,8 @@
 
                     var feed = parser.ParseXml(
                         url,
-                        feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
+                        feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml(),
+                        i);
                     var newItems = from oldItem in newsHeaders[i].GetItems()
                                    join item in feed.GetItems() on oldItem equals item
                                    where !item.Equals(oldItem)

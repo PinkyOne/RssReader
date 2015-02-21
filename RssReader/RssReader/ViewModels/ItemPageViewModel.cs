@@ -17,6 +17,8 @@ namespace RssReader.ViewModels
 
     using RssReader.Storage;
 
+    using SQLite;
+
     public class ItemPageViewModel : Screen
     {
         private readonly INavigationService navigationService;
@@ -43,6 +45,8 @@ namespace RssReader.ViewModels
             if (item.Opacity == 1)
             {
                 item.Opacity = 0.5;
+                var conn = new SQLiteConnection("feedDB.db");
+                conn.Update(item);
                 Parameter.CountUnviewedItems--;
             }
         }

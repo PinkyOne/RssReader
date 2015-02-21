@@ -17,6 +17,8 @@ namespace RssReader.ViewModels
     using Windows.UI.Core;
     using Windows.Web.Syndication;
 
+    using SQLite;
+
     public class AddPageViewModel : Screen
     {
         private readonly INavigationService navigationService;
@@ -65,11 +67,13 @@ namespace RssReader.ViewModels
                 {
                     var feed = parser.ParseXml(
                         url,
-                        feedResult.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
+                        feedResult.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml(),
+                        holder.CountOfHeaders());
                     feedResult.Close();
                     if (feed != null)
                     {
                         holder.AddLine(feed);
+                        
                         eventAggregator.Publish("All is ok", Execute.OnUIThread);
                     }
                     feedResult.Close();

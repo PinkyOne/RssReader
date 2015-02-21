@@ -34,7 +34,8 @@ namespace RssReader.Storage
             string link,
             string description,
             string imageUrl,
-            ObservableCollection<RssItem> items)
+            ObservableCollection<RssItem> items,
+            bool feedToInsertToDb = true)
         {
             this.Url = url ?? string.Empty;
             this.Title = title ?? string.Empty;
@@ -43,6 +44,11 @@ namespace RssReader.Storage
             this.CountUnviewedItems = items.Count;
             this.ImageUrl = imageUrl
                             ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
+            if (feedToInsertToDb)
+            {
+                var conn = new SQLiteConnection("feedDB.db");
+                conn.InsertAll(items);
+            }
         }
 
         public RssFeed(RssFeed feed, bool isInProgress)

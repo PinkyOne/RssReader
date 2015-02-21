@@ -18,5 +18,7 @@
         void Refresh(IDownloader loader, IParser parser);
 
         bool IsBusy();
+
+        int CountOfHeaders();
     }
 }

@@ -13,9 +13,11 @@ namespace RssReader.Storage
     using System.Linq;
     using System.Xml.Linq;
 
+    using SQLite;
+
     public class RssXmlParser : IParser
     {
-        public RssFeed ParseXml(string url, string feed)
+       public RssFeed ParseXml(string url, string feed, int feedId)
         {
             var xmlDoc = XDocument.Parse(feed);
 
@@ -46,7 +48,7 @@ namespace RssReader.Storage
                 try
                 {
                     var items =
-                        new ObservableCollection<RssItem>(from node in nodes let item = new RssItem(node) select item);
+                        new ObservableCollection<RssItem>(from node in nodes let item = new RssItem(node, feedId) select item);
                     return new RssFeed(url, title, link, description, imageUrl, items);
                 }
                 catch (Exception e)

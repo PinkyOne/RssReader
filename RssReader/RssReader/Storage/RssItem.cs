@@ -23,7 +23,7 @@ namespace RssReader.Storage
 
     public class RssItem : PropertyChangedBase
     {
-        public RssItem(XElement rssItem)
+        public RssItem(XElement rssItem, int feedId)
         {
             this.Title =
                 (from xmlElement in rssItem.Elements() where xmlElement.Name.LocalName == "title" select xmlElement)
@@ -53,11 +53,12 @@ namespace RssReader.Storage
                         .FirstOrDefault().Value;
             this.ImageUrl = url ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
             this.Opacity = 1.0;
+
+            this.FeedId = feedId;
         }
 
         public RssItem()
         {
-            throw new NotImplementedException();
         }
 
         public string Item
@@ -71,7 +72,7 @@ namespace RssReader.Storage
         [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; }
-
+        
         public int FeedId { get; set; }
 
         public string Title { get; private set; }

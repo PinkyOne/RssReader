@@ -2,6 +2,6 @@
 {
     public interface IParser
     {
-        RssFeed ParseXml(string url, string feed);
+        RssFeed ParseXml(string url, string feed, int feedId);
     }
 }
