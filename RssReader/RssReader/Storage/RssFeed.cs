@@ -17,6 +17,8 @@ namespace RssReader.Storage
 
     using Windows.UI.Xaml;
 
+    using SQLite;
+
     public class RssFeed
     {
         private bool isInProgress = false;
@@ -38,7 +40,6 @@ namespace RssReader.Storage
             this.Title = title ?? string.Empty;
             this.Link = link ?? string.Empty;
             this.Description = description ?? string.Empty;
-            this.Items = items;
             this.CountUnviewedItems = items.Count;
             this.ImageUrl = imageUrl
                             ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
@@ -50,14 +51,21 @@ namespace RssReader.Storage
             this.Title = feed.Title;
             this.Link = feed.Link;
             this.Description = feed.Description;
-            this.Items = feed.Items;
             this.CountUnviewedItems = feed.CountUnviewedItems;
             this.ImageUrl = feed.ImageUrl
                             ?? @"C:\Users\Alex\Documents\GitHub\RssReader\RssReader\RssReader\Assets\placeholde.png";
             this.isInProgress = isInProgress;
         }
 
-        public ObservableCollection<RssItem> Items { get; private set; }
+        public ObservableCollection<RssItem> GetItems()
+        {
+            var conn = new SQLiteConnection("feedDB.db");
+            var savedItems = conn.Query<RssItem>("select * from RssItem where FeedId = ?", this.Id);
+            return new ObservableCollection<RssItem>(savedItems);
+        }
+        [PrimaryKey]
+        [AutoIncrement]
+        public int Id { get; set; }
 
         public string Title { get; private set; }
 
@@ -87,9 +95,8 @@ namespace RssReader.Storage
 
         public void AddRange(IEnumerable<RssItem> newItems)
         {
-            var oldItems = this.Items.ToList();
-            oldItems.AddRange(newItems);
-            this.Items = new ObservableCollection<RssItem>(oldItems);
+            var conn = new SQLiteConnection("feedDB.db");
+            conn.InsertAll(newItems);
         }
     }
 }

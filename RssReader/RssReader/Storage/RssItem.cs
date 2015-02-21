@@ -14,7 +14,12 @@ namespace RssReader.Storage
     using System.Runtime.Serialization;
     using System.Xml.Linq;
 
+    using Windows.UI.Core;
+    using Windows.UI.Xaml.Controls.Primitives;
+
     using Caliburn.Micro;
+
+    using SQLite;
 
     public class RssItem : PropertyChangedBase
     {
@@ -50,6 +55,11 @@ namespace RssReader.Storage
             this.Opacity = 1.0;
         }
 
+        public RssItem()
+        {
+            throw new NotImplementedException();
+        }
+
         public string Item
         {
             get
@@ -57,6 +67,12 @@ namespace RssReader.Storage
                 return this.ToString();
             }
         }
+
+        [PrimaryKey]
+        [AutoIncrement]
+        public int Id { get; set; }
+
+        public int FeedId { get; set; }
 
         public string Title { get; private set; }
 

@@ -41,6 +41,8 @@
             TimerCallback callback = this.RefreshOnTime;
             this.timer = new Timer(callback, null, 60000, 3000);
             var conn = new SQLiteConnection("feedDB.db");
+            conn.CreateTable<RssItem>();
+            conn.CreateTable<RssFeed>();
             newsHeaders = new ObservableCollection<RssFeed>();
         }
 
@@ -101,8 +103,8 @@
                     var feed = parser.ParseXml(
                         url,
                         feedLoad.GetResults().GetXmlDocument(SyndicationFormat.Rss20).GetXml());
-                    var newItems = from oldItem in newsHeaders[i].Items
-                                   join item in feed.Items on oldItem equals item
+                    var newItems = from oldItem in newsHeaders[i].GetItems()
+                                   join item in feed.GetItems() on oldItem equals item
                                    where !item.Equals(oldItem)
                                    select item;
                     var rssItems = newItems as IList<RssItem> ?? newItems.ToList();

@@ -31,7 +31,7 @@ namespace RssReader.ViewModels
         {
             get
             {
-                return Parameter.Items;
+                return Parameter.GetItems();
             }
         }
 
