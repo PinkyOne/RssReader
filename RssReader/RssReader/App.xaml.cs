@@ -82,12 +82,5 @@ namespace RssReader
             HockeyClient.Current.Configure("41c0efbe685a736005dca035c8636a54");
             await HockeyClient.Current.SendCrashesAsync();
         }
-
-        protected override async void OnSuspending(object sender, SuspendingEventArgs e)
-        {
-            var deferral = e.SuspendingOperation.GetDeferral();
-            await SuspensionManager.SaveAsync(container.GetInstance<INewsHolder>().GetNewsLines());
-            deferral.Complete();
-        }
     }
 }

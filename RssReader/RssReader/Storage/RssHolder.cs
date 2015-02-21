@@ -38,9 +38,7 @@
             this.loader = loader;
             TimerCallback callback = this.RefreshOnTime;
             this.timer = new Timer(callback, null, 60000, 3000);
-            var restoredFeed = SuspensionManager.RestoreAsync();
-            if (!restoredFeed.IsFaulted) newsHeaders = new ObservableCollection<RssFeed>(restoredFeed.Result);
-            else newsHeaders = new ObservableCollection<RssFeed>();
+            newsHeaders = new ObservableCollection<RssFeed>();
         }
 
         public bool IsBusy()
