@@ -16,6 +16,8 @@
     using Windows.UI.Xaml;
     using Windows.Web.Syndication;
 
+    using SQLite;
+
     public class RssHolder : INewsHolder
     {
         private static ObservableCollection<RssFeed> newsHeaders = new ObservableCollection<RssFeed>();
@@ -38,6 +40,7 @@
             this.loader = loader;
             TimerCallback callback = this.RefreshOnTime;
             this.timer = new Timer(callback, null, 60000, 3000);
+            var conn = new SQLiteConnection("feedDB.db");
             newsHeaders = new ObservableCollection<RssFeed>();
         }
 

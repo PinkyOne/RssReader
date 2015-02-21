@@ -17,7 +17,6 @@ namespace RssReader.Storage
 
     using Windows.UI.Xaml;
 
-    [DataContract]
     public class RssFeed
     {
         private bool isInProgress = false;
@@ -58,25 +57,18 @@ namespace RssReader.Storage
             this.isInProgress = isInProgress;
         }
 
-        [DataMember]
         public ObservableCollection<RssItem> Items { get; private set; }
 
-        [DataMember]
         public string Title { get; private set; }
 
-        [DataMember]
         public string Link { get; private set; }
 
-        [DataMember]
         public string Description { get; private set; }
 
-        [DataMember]
         public string Url { get; private set; }
 
-        [DataMember]
         public int CountUnviewedItems { get; set; }
 
-        [DataMember]
         public string ImageUrl { get; private set; }
 
         public bool OnDelete { get; set; }

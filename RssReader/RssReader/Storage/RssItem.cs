@@ -16,7 +16,6 @@ namespace RssReader.Storage
 
     using Caliburn.Micro;
 
-    [DataContract]
     public class RssItem : PropertyChangedBase
     {
         public RssItem(XElement rssItem)
@@ -59,22 +58,16 @@ namespace RssReader.Storage
             }
         }
 
-        [DataMember]
         public string Title { get; private set; }
 
-        [DataMember]
         public string Link { get; private set; }
 
-        [DataMember]
         public string Description { get; private set; }
 
-        [DataMember]
         public string PublicDate { get; private set; }
 
-        [DataMember]
         public string ImageUrl { get; private set; }
 
-        [DataMember]
         public double Opacity { get; set; }
 
         public override string ToString()
